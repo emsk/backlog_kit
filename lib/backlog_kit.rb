@@ -1,4 +1,4 @@
-require "backlog_kit/version"
+require 'backlog_kit/version'
 
 module BacklogKit
   # Your code goes here...
