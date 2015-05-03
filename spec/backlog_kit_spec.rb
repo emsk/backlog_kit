@@ -1,11 +1,8 @@
 require 'spec_helper'
 
 describe BacklogKit do
-  it 'has a version number' do
-    expect(BacklogKit::VERSION).not_to be nil
-  end
-
-  it 'does something useful' do
-    expect(false).to eq(true)
+  describe 'VERSION' do
+    subject { described_class::VERSION }
+    it { is_expected.not_to be_nil }
   end
 end
