@@ -56,6 +56,7 @@ module BacklogKit
     def connection
       @connection ||= Faraday.new(url: host, headers: request_headers) do |faraday|
         faraday.request(:url_encoded)
+        faraday.response(:json, content_type: /application\/json/)
         faraday.adapter(Faraday.default_adapter)
       end
     end
