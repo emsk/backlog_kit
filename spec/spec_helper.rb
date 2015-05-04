@@ -5,6 +5,7 @@ end
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'backlog_kit'
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
