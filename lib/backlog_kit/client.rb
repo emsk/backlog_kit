@@ -1,3 +1,4 @@
+require 'backlog_kit/error'
 require 'backlog_kit/response'
 require 'backlog_kit/version'
 require 'backlog_kit/hash_extensions'
@@ -48,6 +49,8 @@ module BacklogKit
       params.camelize_keys!
       faraday_response = connection.send(method, request_path(path), params)
       BacklogKit::Response.new(faraday_response)
+    rescue Faraday::ConnectionFailed => e
+      raise BacklogKit::Error, "#{BacklogKit::ConnectionError.name.demodulize} - #{e.message}"
     end
 
     def connection

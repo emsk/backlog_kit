@@ -76,6 +76,17 @@ describe BacklogKit::Client do
       subject { response.body }
       it { is_expected.to be_a BacklogKit::Resource }
     end
+
+    context 'when rescue Faraday::ConnectionFailed' do
+      let(:message) { 'getaddrinfo: nodename nor servname provided, or not known' }
+
+      before do
+        allow_any_instance_of(Faraday::Connection).to receive(:send).and_raise(Faraday::ConnectionFailed, message)
+      end
+
+      subject { lambda { response } }
+      it { is_expected.to raise_error(BacklogKit::Error, "ConnectionError - #{message}") }
+    end
   end
 
   let(:request_params) do
