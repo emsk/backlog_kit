@@ -1,8 +1,8 @@
 # BacklogKit
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/backlog_kit`. To experiment with that code, run `bin/console` for an interactive prompt.
+Ruby wrapper for the Nulab's Backlog API.
 
-TODO: Delete this and the text above, and describe your gem
+http://developer.nulab-inc.com/docs/backlog
 
 ## Installation
 
@@ -22,7 +22,37 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'backlog_kit'
+
+client = BacklogKit::Client.new(space_id: 'emsk', api_key: '1234567890abcdefghij1234567890abcdefghij1234567890abcdefghij1234')
+
+client.get('space').body # get body
+client.get('space').headers # get headers
+client.get('space').status # get status
+
+client.get('space/activities') # no params
+client.get('space/activities', activity_type_id: [1, 4], min_id: 100) # underscored key
+client.get('space/activities', activityTypeId: [1, 4], minId: 100) # camelized key
+
+client.post('groups', name: 'beer') # POST method
+client.put('space/notification', content: 'Cheers!') # PUT method
+client.patch('groups/3712', name: 'whiskey') # PATCH method
+client.delete('groups/3712') # DELETE method
+```
+
+## ENV
+
+| ENV Variable | Description |
+| :----------- | :---------- |
+| `BACKLOG_SPACE_ID` | Your Backlog SPACE ID. |
+| `BACKLOG_API_KEY` | Your Backlog API KEY. |
+
+You can create instance more easily.
+
+```ruby
+client = BacklogKit::Client.new
+```
 
 ## Development
 
@@ -32,7 +62,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/backlog_kit/fork )
+1. Fork it ( https://github.com/emsk/backlog_kit/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
