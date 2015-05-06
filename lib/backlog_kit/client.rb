@@ -1,6 +1,7 @@
 require 'backlog_kit/error'
 require 'backlog_kit/response'
 require 'backlog_kit/version'
+require 'backlog_kit/response/file_parser'
 require 'backlog_kit/response/raise_error'
 require 'backlog_kit/hash_extensions'
 
@@ -53,6 +54,7 @@ module BacklogKit
       Faraday.new(url: host, headers: request_headers) do |faraday|
         faraday.request(:url_encoded)
         faraday.response(:json, content_type: /application\/json/)
+        faraday.response(:file_parser)
         faraday.response(:error)
         faraday.adapter(Faraday.default_adapter)
       end
