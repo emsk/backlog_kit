@@ -7,7 +7,12 @@ describe BacklogKit::Client do
 
   describe '.new' do
     subject { client }
+
     it { is_expected.to be_a described_class }
+    it { is_expected.to respond_to(:space_id) }
+    it { is_expected.to respond_to(:space_id=) }
+    it { is_expected.to respond_to(:api_key) }
+    it { is_expected.to respond_to(:api_key=) }
   end
 
   describe '#space_id' do
