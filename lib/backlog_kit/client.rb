@@ -52,6 +52,7 @@ module BacklogKit
 
     def connection
       Faraday.new(url: host, headers: request_headers) do |faraday|
+        faraday.request(:multipart)
         faraday.request(:url_encoded)
         faraday.response(:json, content_type: /application\/json/)
         faraday.response(:file_parser)
