@@ -1,12 +1,15 @@
 require 'backlog_kit/error'
 require 'backlog_kit/response'
 require 'backlog_kit/version'
+require 'backlog_kit/client/git'
 require 'backlog_kit/response/file_parser'
 require 'backlog_kit/response/raise_error'
 require 'backlog_kit/hash_extensions'
 
 module BacklogKit
   class Client
+    include BacklogKit::Client::Git
+
     USER_AGENT = "BacklogKit Ruby Gem #{BacklogKit::VERSION}".freeze
 
     attr_accessor(:space_id, :api_key)
