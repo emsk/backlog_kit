@@ -1,5 +1,7 @@
 # BacklogKit
 
+[![Build Status](https://travis-ci.org/emsk/backlog_kit.svg?branch=master)](https://travis-ci.org/emsk/backlog_kit)
+
 Ruby wrapper for the Nulab's Backlog API.
 
 http://developer.nulab-inc.com/docs/backlog
