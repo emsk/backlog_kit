@@ -25,10 +25,36 @@ shared_examples_for 'a normal response headers' do
   end
 end
 
+shared_examples_for 'a response headers of no content' do
+  describe '#headers' do
+    subject { response.headers }
+
+    it { is_expected.to be_a BacklogKit::Resource }
+    it { is_expected.to respond_to('access-control-allow-origin') }
+    it { is_expected.to respond_to(:access_control_allow_origin) }
+    it { is_expected.not_to respond_to('content-type') }
+    it { is_expected.not_to respond_to(:content_type) }
+    it { is_expected.to respond_to(:date) }
+    it { is_expected.to respond_to(:server) }
+    it { is_expected.to respond_to('strict-transport-security') }
+    it { is_expected.to respond_to(:strict_transport_security) }
+    it { is_expected.to respond_to('content-length') }
+    it { is_expected.to respond_to(:content_length) }
+    it { is_expected.to respond_to(:connection) }
+  end
+end
+
 shared_examples_for 'a normal response status' do
   describe '#status' do
     subject { response.status }
     it { is_expected.to eq status_code }
+  end
+end
+
+shared_examples_for 'a response body of no content' do
+  describe '#body' do
+    subject { response.body }
+    it { is_expected.to be_a BacklogKit::Resource }
   end
 end
 
