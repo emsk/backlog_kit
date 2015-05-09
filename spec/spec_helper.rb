@@ -1,4 +1,11 @@
 require 'simplecov'
+require 'coveralls'
+
+SimpleCov.formatters = [
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
+
 SimpleCov.start do
   add_filter '/spec/'
 end
@@ -7,6 +14,8 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'backlog_kit'
 require 'webmock/rspec'
 require 'vcr'
+
+WebMock.disable_net_connect!(allow: 'coveralls.io')
 
 Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 
