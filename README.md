@@ -1,6 +1,7 @@
 # BacklogKit
 
 [![Build Status](https://travis-ci.org/emsk/backlog_kit.svg?branch=master)](https://travis-ci.org/emsk/backlog_kit)
+[![Coverage Status](https://coveralls.io/repos/emsk/backlog_kit/badge.svg?branch=master)](https://coveralls.io/r/emsk/backlog_kit)
 
 Ruby wrapper for the Nulab's Backlog API.
 
