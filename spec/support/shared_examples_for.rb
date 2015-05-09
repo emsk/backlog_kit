@@ -118,6 +118,14 @@ shared_examples_for 'a resource of priority' do
   it { is_expected.to respond_to(:name) }
 end
 
+shared_examples_for 'a resource of resolution' do
+  subject { resolution }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:name) }
+end
+
 shared_examples_for 'a resource of user' do
   subject { user }
 

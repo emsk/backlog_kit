@@ -4,6 +4,7 @@ require 'backlog_kit/version'
 require 'backlog_kit/client/git'
 require 'backlog_kit/client/group'
 require 'backlog_kit/client/priority'
+require 'backlog_kit/client/resolution'
 require 'backlog_kit/response/file_parser'
 require 'backlog_kit/response/raise_error'
 require 'backlog_kit/hash_extensions'
@@ -13,6 +14,7 @@ module BacklogKit
     include BacklogKit::Client::Git
     include BacklogKit::Client::Group
     include BacklogKit::Client::Priority
+    include BacklogKit::Client::Resolution
 
     USER_AGENT = "BacklogKit Ruby Gem #{BacklogKit::VERSION}".freeze
 
