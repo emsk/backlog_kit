@@ -110,6 +110,14 @@ shared_examples_for 'a resource of group' do |flags|
   end
 end
 
+shared_examples_for 'a resource of priority' do
+  subject { priority }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:name) }
+end
+
 shared_examples_for 'a resource of user' do
   subject { user }
 
