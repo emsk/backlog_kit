@@ -1,5 +1,6 @@
 # BacklogKit
 
+[![Gem Version](https://badge.fury.io/rb/backlog_kit.svg)](http://badge.fury.io/rb/backlog_kit)
 [![Build Status](https://travis-ci.org/emsk/backlog_kit.svg?branch=master)](https://travis-ci.org/emsk/backlog_kit)
 [![Coverage Status](https://coveralls.io/repos/emsk/backlog_kit/badge.svg?branch=master)](https://coveralls.io/r/emsk/backlog_kit)
 [![Code Climate](https://codeclimate.com/github/emsk/backlog_kit/badges/gpa.svg)](https://codeclimate.com/github/emsk/backlog_kit)
