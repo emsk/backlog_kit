@@ -69,6 +69,47 @@ shared_examples_for 'a resource of git repository' do
   end
 end
 
+shared_examples_for 'a resource of group' do |flags|
+  subject { group }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:members) }
+  it { is_expected.to respond_to(:displayOrder) }
+  it { is_expected.to respond_to(:display_order) }
+  it { is_expected.to respond_to(:createdUser) }
+  it { is_expected.to respond_to(:created_user) }
+  it { is_expected.to respond_to(:created) }
+  it { is_expected.to respond_to(:updatedUser) }
+  it { is_expected.to respond_to(:updated_user) }
+  it { is_expected.to respond_to(:updated) }
+
+  describe '#members' do
+    subject { group.members }
+    it { is_expected.to be_a Array }
+
+    if flags[:member]
+      describe '#[0]' do
+        let(:user) { group.members[0] }
+        it_behaves_like 'a resource of user'
+      end
+    else
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe '#created_user' do
+    let(:user) { group.created_user }
+    it_behaves_like 'a resource of user'
+  end
+
+  describe '#updated_user' do
+    let(:user) { group.updated_user }
+    it_behaves_like 'a resource of user'
+  end
+end
+
 shared_examples_for 'a resource of user' do
   subject { user }
 
@@ -82,6 +123,11 @@ shared_examples_for 'a resource of user' do
   it { is_expected.to respond_to(:lang) }
   it { is_expected.to respond_to(:mailAddress) }
   it { is_expected.to respond_to(:mail_address) }
+end
+
+shared_examples_for 'a invalid request error' do
+  subject { lambda { response.body } }
+  it { is_expected.to raise_error(BacklogKit::Error, "[ERROR 1] InvalidRequestError - error.unknownParameter : #{invalid_param_key} (CODE: 7)") }
 end
 
 shared_examples_for 'raise errors' do
