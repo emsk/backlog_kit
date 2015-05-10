@@ -119,7 +119,7 @@ shared_examples_for 'a resource of change log' do
   it { is_expected.to respond_to(:notification_info) }
 end
 
-shared_examples_for 'a resource of comment' do
+shared_examples_for 'a resource of comment' do |flags|
   subject { comment }
 
   it { is_expected.to be_a BacklogKit::Resource }
@@ -138,9 +138,13 @@ shared_examples_for 'a resource of comment' do
     subject { comment.change_log }
     it { is_expected.to be_a Array }
 
-    describe '#[0]' do
-      let(:change_log) { comment.change_log[0] }
-      it_behaves_like 'a resource of change log'
+    if flags[:change_log]
+      describe '#[0]' do
+        let(:change_log) { comment.change_log[0] }
+        it_behaves_like 'a resource of change log'
+      end
+    else
+      it { is_expected.to be_empty }
     end
   end
 
@@ -153,9 +157,13 @@ shared_examples_for 'a resource of comment' do
     subject { comment.stars }
     it { is_expected.to be_a Array }
 
-    describe '#[0]' do
-      let(:star) { comment.stars[0] }
-      it_behaves_like 'a resource of star'
+    if flags[:star]
+      describe '#[0]' do
+        let(:star) { comment.stars[0] }
+        it_behaves_like 'a resource of star'
+      end
+    else
+      it { is_expected.to be_empty }
     end
   end
 
@@ -163,9 +171,13 @@ shared_examples_for 'a resource of comment' do
     subject { comment.notifications }
     it { is_expected.to be_a Array }
 
-    describe '#[0]' do
-      let(:notification) { comment.notifications[0] }
-      it_behaves_like 'a resource of notification'
+    if flags[:notification]
+      describe '#[0]' do
+        let(:notification) { comment.notifications[0] }
+        it_behaves_like 'a resource of notification'
+      end
+    else
+      it { is_expected.to be_empty }
     end
   end
 end
@@ -200,12 +212,21 @@ shared_examples_for 'a resource of extended notification' do
 
   describe '#issue' do
     let(:issue) { extended_notification.issue }
-    it_behaves_like 'a resource of issue', attachment: true, shared_file: true, star: true
+    it_behaves_like 'a resource of issue', {
+      resolution: true,
+      assignee: true,
+      category: true,
+      version: true,
+      milestone: true,
+      attachment: true,
+      shared_file: true,
+      star: true
+    }
   end
 
   describe '#comment' do
     let(:comment) { extended_notification.comment }
-    it_behaves_like 'a resource of comment'
+    it_behaves_like 'a resource of comment', change_log: true, star: true, notification: true
   end
 
   describe '#sender' do
@@ -342,9 +363,11 @@ shared_examples_for 'a resource of issue' do |flags|
     it_behaves_like 'a resource of issue type'
   end
 
-  describe '#resolution' do
-    let(:resolution) { issue.resolution }
-    it_behaves_like 'a resource of resolution'
+  if flags[:resolution]
+    describe '#resolution' do
+      let(:resolution) { issue.resolution }
+      it_behaves_like 'a resource of resolution'
+    end
   end
 
   describe '#priority' do
@@ -357,18 +380,24 @@ shared_examples_for 'a resource of issue' do |flags|
     it_behaves_like 'a resource of status'
   end
 
-  describe '#assignee' do
-    let(:user) { issue.assignee }
-    it_behaves_like 'a resource of user'
+  if flags[:assignee]
+    describe '#assignee' do
+      let(:user) { issue.assignee }
+      it_behaves_like 'a resource of user'
+    end
   end
 
   describe '#category' do
     subject { issue.category }
     it { is_expected.to be_a Array }
 
-    describe '#[0]' do
-      let(:category) { issue.category[0] }
-      it_behaves_like 'a resource of category'
+    if flags[:category]
+      describe '#[0]' do
+        let(:category) { issue.category[0] }
+        it_behaves_like 'a resource of category'
+      end
+    else
+      it { is_expected.to be_empty }
     end
   end
 
@@ -376,9 +405,13 @@ shared_examples_for 'a resource of issue' do |flags|
     subject { issue.versions }
     it { is_expected.to be_a Array }
 
-    describe '#[0]' do
-      let(:version) { issue.versions[0] }
-      it_behaves_like 'a resource of version'
+    if flags[:version]
+      describe '#[0]' do
+        let(:version) { issue.versions[0] }
+        it_behaves_like 'a resource of version'
+      end
+    else
+      it { is_expected.to be_empty }
     end
   end
 
@@ -386,9 +419,13 @@ shared_examples_for 'a resource of issue' do |flags|
     subject { issue.milestone }
     it { is_expected.to be_a Array }
 
-    describe '#[0]' do
-      let(:milestone) { issue.milestone[0] }
-      it_behaves_like 'a resource of milestone'
+    if flags[:milestone]
+      describe '#[0]' do
+        let(:milestone) { issue.milestone[0] }
+        it_behaves_like 'a resource of milestone'
+      end
+    else
+      it { is_expected.to be_empty }
     end
   end
 
@@ -552,7 +589,16 @@ shared_examples_for 'a resource of recently viewed issue' do
 
   describe '#issue' do
     let(:issue) { recently_viewed_issue.issue }
-    it_behaves_like 'a resource of issue', attachment: true, shared_file: true, star: true
+    it_behaves_like 'a resource of issue', {
+      resolution: true,
+      assignee: true,
+      category: true,
+      version: true,
+      milestone: true,
+      attachment: true,
+      shared_file: true,
+      star: true
+    }
   end
 end
 
