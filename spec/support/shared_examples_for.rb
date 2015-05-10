@@ -58,6 +58,40 @@ shared_examples_for 'a response body of no content' do
   end
 end
 
+shared_examples_for 'a resource of activity' do
+  subject { activity }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:project) }
+  it { is_expected.to respond_to(:type) }
+  it { is_expected.to respond_to(:content) }
+  it { is_expected.to respond_to(:notifications) }
+  it { is_expected.to respond_to(:createdUser) }
+  it { is_expected.to respond_to(:created_user) }
+  it { is_expected.to respond_to(:created) }
+
+  describe '#project' do
+    let(:project) { activity.project }
+    it_behaves_like 'a resource of project'
+  end
+
+  describe '#content' do
+    subject { activity.content }
+    it { is_expected.to be_a BacklogKit::Resource }
+  end
+
+  describe '#notifications' do
+    subject { activity.notifications }
+    it { is_expected.to be_a Array }
+  end
+
+  describe '#created_user' do
+    let(:user) { activity.created_user }
+    it_behaves_like 'a resource of user'
+  end
+end
+
 shared_examples_for 'a resource of category' do
   subject { category }
 
@@ -544,6 +578,78 @@ shared_examples_for 'a resource of shared file' do
   end
 end
 
+shared_examples_for 'a resource of space' do
+  subject { space }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:spaceKey) }
+  it { is_expected.to respond_to(:space_key) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:ownerId) }
+  it { is_expected.to respond_to(:owner_id) }
+  it { is_expected.to respond_to(:lang) }
+  it { is_expected.to respond_to(:timezone) }
+  it { is_expected.to respond_to(:reportSendTime) }
+  it { is_expected.to respond_to(:report_send_time) }
+  it { is_expected.to respond_to(:textFormattingRule) }
+  it { is_expected.to respond_to(:text_formatting_rule) }
+  it { is_expected.to respond_to(:created) }
+  it { is_expected.to respond_to(:updated) }
+end
+
+shared_examples_for 'a resource of space attachment' do
+  subject { space_attachment }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:size) }
+end
+
+shared_examples_for 'a resource of space disk usage' do
+  subject { space_disk_usage }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:capacity) }
+  it { is_expected.to respond_to(:issue) }
+  it { is_expected.to respond_to(:wiki) }
+  it { is_expected.to respond_to(:file) }
+  it { is_expected.to respond_to(:subversion) }
+  it { is_expected.to respond_to(:git) }
+  it { is_expected.to respond_to(:details) }
+
+  describe '#details' do
+    subject { space_disk_usage.details }
+    it { is_expected.to be_a Array }
+
+    describe '#[0]' do
+      let(:space_disk_usage_detail) { space_disk_usage.details[0] }
+      it_behaves_like 'a resource of space disk usage detail'
+    end
+  end
+end
+
+shared_examples_for 'a resource of space disk usage detail' do
+  subject { space_disk_usage_detail }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:projectId) }
+  it { is_expected.to respond_to(:project_id) }
+  it { is_expected.to respond_to(:issue) }
+  it { is_expected.to respond_to(:wiki) }
+  it { is_expected.to respond_to(:file) }
+  it { is_expected.to respond_to(:subversion) }
+  it { is_expected.to respond_to(:git) }
+end
+
+shared_examples_for 'a resource of space notification' do
+  subject { space_notification }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:content) }
+  it { is_expected.to respond_to(:updated) }
+end
+
 shared_examples_for 'a resource of star' do
   subject { star }
 
@@ -600,6 +706,14 @@ shared_examples_for 'a resource of version' do
   it { is_expected.to respond_to(:archived) }
   it { is_expected.to respond_to(:displayOrder) }
   it { is_expected.to respond_to(:display_order) }
+end
+
+shared_examples_for 'a resource file' do
+  subject { resource_file }
+
+  it { is_expected.to be_a BacklogKit::ResourceFile }
+  it { is_expected.to respond_to(:content) }
+  it { is_expected.to respond_to(:filename) }
 end
 
 shared_examples_for 'a invalid request error' do
