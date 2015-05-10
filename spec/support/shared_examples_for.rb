@@ -543,6 +543,45 @@ shared_examples_for 'a resource of project' do
   it { is_expected.to respond_to(:display_order) }
 end
 
+shared_examples_for 'a resource of recently viewed issue' do
+  subject { recently_viewed_issue }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:issue) }
+  it { is_expected.to respond_to(:updated) }
+
+  describe '#issue' do
+    let(:issue) { recently_viewed_issue.issue }
+    it_behaves_like 'a resource of issue', attachment: true, shared_file: true, star: true
+  end
+end
+
+shared_examples_for 'a resource of recently viewed project' do
+  subject { recently_viewed_project }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:project) }
+  it { is_expected.to respond_to(:updated) }
+
+  describe '#project' do
+    let(:project) { recently_viewed_project.project }
+    it_behaves_like 'a resource of project'
+  end
+end
+
+shared_examples_for 'a resource of recently viewed wiki' do
+  subject { recently_viewed_wiki }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:page) }
+  it { is_expected.to respond_to(:updated) }
+
+  describe '#page' do
+    let(:wiki) { recently_viewed_wiki.page }
+    it_behaves_like 'a resource of wiki'
+  end
+end
+
 shared_examples_for 'a resource of resolution' do
   subject { resolution }
 
@@ -675,6 +714,14 @@ shared_examples_for 'a resource of status' do
   it { is_expected.to respond_to(:name) }
 end
 
+shared_examples_for 'a resource of tag' do
+  subject { tag }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:name) }
+end
+
 shared_examples_for 'a resource of user' do
   subject { user }
 
@@ -706,6 +753,43 @@ shared_examples_for 'a resource of version' do
   it { is_expected.to respond_to(:archived) }
   it { is_expected.to respond_to(:displayOrder) }
   it { is_expected.to respond_to(:display_order) }
+end
+
+shared_examples_for 'a resource of wiki' do
+  subject { wiki }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:projectId) }
+  it { is_expected.to respond_to(:project_id) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:tags) }
+  it { is_expected.to respond_to(:createdUser) }
+  it { is_expected.to respond_to(:created_user) }
+  it { is_expected.to respond_to(:created) }
+  it { is_expected.to respond_to(:updatedUser) }
+  it { is_expected.to respond_to(:updated_user) }
+  it { is_expected.to respond_to(:updated) }
+
+  describe '#tags' do
+    subject { wiki.tags }
+    it { is_expected.to be_a Array }
+
+    describe '#[0]' do
+      let(:tag) { wiki.tags[0] }
+      it_behaves_like 'a resource of tag'
+    end
+  end
+
+  describe '#created_user' do
+    let(:user) { wiki.created_user }
+    it_behaves_like 'a resource of user'
+  end
+
+  describe '#updated_user' do
+    let(:user) { wiki.updated_user }
+    it_behaves_like 'a resource of user'
+  end
 end
 
 shared_examples_for 'a resource file' do
