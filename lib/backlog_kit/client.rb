@@ -3,6 +3,7 @@ require 'backlog_kit/response'
 require 'backlog_kit/version'
 require 'backlog_kit/client/git'
 require 'backlog_kit/client/group'
+require 'backlog_kit/client/notification'
 require 'backlog_kit/client/priority'
 require 'backlog_kit/client/resolution'
 require 'backlog_kit/client/star'
@@ -15,6 +16,7 @@ module BacklogKit
   class Client
     include BacklogKit::Client::Git
     include BacklogKit::Client::Group
+    include BacklogKit::Client::Notification
     include BacklogKit::Client::Priority
     include BacklogKit::Client::Resolution
     include BacklogKit::Client::Star
