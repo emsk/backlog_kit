@@ -11,6 +11,7 @@ require 'backlog_kit/client/space'
 require 'backlog_kit/client/star'
 require 'backlog_kit/client/status'
 require 'backlog_kit/client/user'
+require 'backlog_kit/client/wiki'
 require 'backlog_kit/response/file_parser'
 require 'backlog_kit/response/raise_error'
 require 'backlog_kit/hash_extensions'
@@ -27,6 +28,7 @@ module BacklogKit
     include BacklogKit::Client::Star
     include BacklogKit::Client::Status
     include BacklogKit::Client::User
+    include BacklogKit::Client::Wiki
 
     USER_AGENT = "BacklogKit Ruby Gem #{BacklogKit::VERSION}".freeze
 

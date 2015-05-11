@@ -313,6 +313,25 @@ shared_examples_for 'a resource of group' do |flags|
   end
 end
 
+shared_examples_for 'a resource of history' do
+  subject { history }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:pageId) }
+  it { is_expected.to respond_to(:page_id) }
+  it { is_expected.to respond_to(:version) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:content) }
+  it { is_expected.to respond_to(:createdUser) }
+  it { is_expected.to respond_to(:created_user) }
+  it { is_expected.to respond_to(:created) }
+
+  describe '#created_user' do
+    let(:user) { history.created_user }
+    it_behaves_like 'a resource of user'
+  end
+end
+
 shared_examples_for 'a resource of issue' do |flags|
   subject { issue }
 
