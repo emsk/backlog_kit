@@ -6,6 +6,7 @@ require 'backlog_kit/client/group'
 require 'backlog_kit/client/issue'
 require 'backlog_kit/client/notification'
 require 'backlog_kit/client/priority'
+require 'backlog_kit/client/project'
 require 'backlog_kit/client/resolution'
 require 'backlog_kit/client/space'
 require 'backlog_kit/client/star'
@@ -23,6 +24,7 @@ module BacklogKit
     include BacklogKit::Client::Issue
     include BacklogKit::Client::Notification
     include BacklogKit::Client::Priority
+    include BacklogKit::Client::Project
     include BacklogKit::Client::Resolution
     include BacklogKit::Client::Space
     include BacklogKit::Client::Star

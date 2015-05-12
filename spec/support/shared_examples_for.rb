@@ -599,6 +599,19 @@ shared_examples_for 'a resource of project' do
   it { is_expected.to respond_to(:display_order) }
 end
 
+shared_examples_for 'a resource of project disk usage' do
+  subject { project_disk_usage }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:projectId) }
+  it { is_expected.to respond_to(:project_id) }
+  it { is_expected.to respond_to(:issue) }
+  it { is_expected.to respond_to(:wiki) }
+  it { is_expected.to respond_to(:file) }
+  it { is_expected.to respond_to(:subversion) }
+  it { is_expected.to respond_to(:git) }
+end
+
 shared_examples_for 'a resource of recently viewed issue' do
   subject { recently_viewed_issue }
 
@@ -818,6 +831,42 @@ shared_examples_for 'a resource of version' do
   it { is_expected.to respond_to(:archived) }
   it { is_expected.to respond_to(:displayOrder) }
   it { is_expected.to respond_to(:display_order) }
+end
+
+shared_examples_for 'a resource of webhook' do
+  subject { webhook }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:description) }
+  it { is_expected.to respond_to(:hookUrl) }
+  it { is_expected.to respond_to(:hook_url) }
+  it { is_expected.to respond_to(:allEvent) }
+  it { is_expected.to respond_to(:all_event) }
+  it { is_expected.to respond_to(:activityTypeIds) }
+  it { is_expected.to respond_to(:activity_type_ids) }
+  it { is_expected.to respond_to(:created) }
+  it { is_expected.to respond_to(:createdUser) }
+  it { is_expected.to respond_to(:created_user) }
+  it { is_expected.to respond_to(:updated) }
+  it { is_expected.to respond_to(:updatedUser) }
+  it { is_expected.to respond_to(:updated_user) }
+
+  describe '#activity_type_ids' do
+    subject { webhook.activity_type_ids }
+    it { is_expected.to be_a Array }
+  end
+
+  describe '#created_user' do
+    let(:user) { webhook.created_user }
+    it_behaves_like 'a resource of user'
+  end
+
+  describe '#updated_user' do
+    let(:user) { webhook.updated_user }
+    it_behaves_like 'a resource of user'
+  end
 end
 
 shared_examples_for 'a resource of wiki' do
