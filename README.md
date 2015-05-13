@@ -33,18 +33,23 @@ require 'backlog_kit'
 
 client = BacklogKit::Client.new(space_id: 'emsk', api_key: '1234567890abcdefghij1234567890abcdefghij1234567890abcdefghij1234')
 
-client.get('space').body # get body
-client.get('space').headers # get headers
-client.get('space').status # get status
+client.get_space.body # get body
+client.get_space.headers # get headers
+client.get_space.status # get status
 
-client.get('space/activities') # no params
-client.get('space/activities', activity_type_id: [1, 4], min_id: 100) # underscored key
-client.get('space/activities', activityTypeId: [1, 4], minId: 100) # camelized key
+client.get_space_activities # no params
+client.get_space_activities(activity_type_id: [1, 4], min_id: 100) # underscored key
+client.get_space_activities(activityTypeId: [1, 4], minId: 100) # camelized key
+```
 
-client.post('groups', name: 'beer') # POST method
-client.put('space/notification', content: 'Cheers!') # PUT method
-client.patch('groups/3712', name: 'whiskey') # PATCH method
-client.delete('groups/3712') # DELETE method
+You can also use raw methods for unsupported API.
+
+```ruby
+client.get('projects/1234/customFields') # GET
+client.post('groups', name: 'beer') # POST
+client.put('space/notification', content: 'Cheers!') # PUT
+client.patch('groups/3712', name: 'whiskey') # PATCH
+client.delete('groups/3712') # DELETE
 ```
 
 ## ENV
