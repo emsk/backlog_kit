@@ -31,7 +31,10 @@ Or install it yourself as:
 ```ruby
 require 'backlog_kit'
 
-client = BacklogKit::Client.new(space_id: 'emsk', api_key: '1234567890abcdefghij1234567890abcdefghij1234567890abcdefghij1234')
+client = BacklogKit::Client.new(
+  space_id: 'emsk',
+  api_key: '1234567890abcdefghij1234567890abcdefghij1234567890abcdefghij1234'
+)
 
 client.get_space.body # get body
 client.get_space.headers # get headers
@@ -40,9 +43,11 @@ client.get_space.status # get status
 client.get_space_activities # no params
 client.get_space_activities(activity_type_id: [1, 4], min_id: 100) # underscored key
 client.get_space_activities(activityTypeId: [1, 4], minId: 100) # camelized key
+
+client.get_groups.body[0].members[0].mail_address # method chaining
 ```
 
-You can also use raw methods for unsupported API.
+You can also use low-level methods.
 
 ```ruby
 client.get('projects/1234/customFields') # GET
