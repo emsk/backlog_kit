@@ -57,6 +57,27 @@ client.patch('groups/3712', name: 'whiskey') # PATCH
 client.delete('groups/3712') # DELETE
 ```
 
+## Authentication
+
+### API Key
+
+```ruby
+client = BacklogKit::Client.new(
+  space_id: 'emsk',
+  api_key: '1234567890abcdefghij1234567890abcdefghij1234567890abcdefghij1234'
+)
+```
+
+### OAuth access token
+
+```ruby
+client = BacklogKit::Client.new(
+  space_id: 'emsk',
+  api_key: nil, # api_key should be nil
+  access_token: 'abcdefghij1234567890abcdefghij1234567890abcdefghij1234567890abcd'
+)
+```
+
 ## ENV
 
 | ENV Variable | Description |
