@@ -68,6 +68,23 @@ You can create instance more easily.
 client = BacklogKit::Client.new
 ```
 
+## Supported API
+
+* Git
+* Group
+* Issue
+* Notification
+* Priority
+* Project
+* Resolution
+* Space
+* Star
+* Status
+* User
+* Wiki
+
+See [RDoc](http://www.rubydoc.info/gems/backlog_kit) for more details.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
