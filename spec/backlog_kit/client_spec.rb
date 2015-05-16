@@ -3,6 +3,7 @@ require 'spec_helper'
 describe BacklogKit::Client do
   let(:space_id) { 'test-space-id' }
   let(:api_key) { 'test-api-key' }
+  let(:client_id) { 'test-client-id' }
   let(:client) { described_class.new(space_id: space_id, api_key: api_key) }
 
   describe '.new' do
@@ -13,6 +14,18 @@ describe BacklogKit::Client do
     it { is_expected.to respond_to(:space_id=) }
     it { is_expected.to respond_to(:api_key) }
     it { is_expected.to respond_to(:api_key=) }
+    it { is_expected.to respond_to(:client_id) }
+    it { is_expected.to respond_to(:client_id=) }
+    it { is_expected.to respond_to(:client_secret) }
+    it { is_expected.to respond_to(:client_secret=) }
+    it { is_expected.to respond_to(:refresh_token) }
+    it { is_expected.to respond_to(:refresh_token=) }
+    it { is_expected.to respond_to(:redirect_uri) }
+    it { is_expected.to respond_to(:redirect_uri=) }
+    it { is_expected.to respond_to(:state) }
+    it { is_expected.to respond_to(:state=) }
+    it { is_expected.to respond_to(:access_token) }
+    it { is_expected.to respond_to(:access_token=) }
   end
 
   describe '#space_id' do
@@ -50,6 +63,122 @@ describe BacklogKit::Client do
       end
 
       it { is_expected.to eq api_key_env }
+    end
+  end
+
+  describe '#client_id' do
+    subject { client.client_id }
+
+    context 'when preset @client_id from args' do
+      let(:client) { described_class.new(client_id: client_id) }
+
+      it { is_expected.to eq client_id }
+    end
+
+    context 'when preset @client_id from ENV' do
+      let(:client) { described_class.new }
+      let(:client_id_env) { 'test-client-id-env' }
+
+      before do
+        stub_const('ENV', { 'BACKLOG_OAUTH_CLIENT_ID' => client_id_env })
+      end
+
+      it { is_expected.to eq client_id_env }
+    end
+  end
+
+  describe '#client_secret' do
+    subject { client.client_secret }
+
+    context 'when preset @client_secret from args' do
+      let(:client_secret) { 'test-client-secret' }
+      let(:client) { described_class.new(client_secret: client_secret) }
+
+      it { is_expected.to eq client_secret }
+    end
+
+    context 'when preset @client_secret from ENV' do
+      let(:client) { described_class.new }
+      let(:client_secret_env) { 'test-client-secret-env' }
+
+      before do
+        stub_const('ENV', { 'BACKLOG_OAUTH_CLIENT_SECRET' => client_secret_env })
+      end
+
+      it { is_expected.to eq client_secret_env }
+    end
+  end
+
+  describe '#refresh_token' do
+    subject { client.refresh_token }
+
+    context 'when preset @refresh_token from args' do
+      let(:refresh_token) { 'test-refresh-token' }
+      let(:client) { described_class.new(refresh_token: refresh_token) }
+
+      it { is_expected.to eq refresh_token }
+    end
+
+    context 'when preset @refresh_token from ENV' do
+      let(:client) { described_class.new }
+      let(:refresh_token_env) { 'test-refresh-token-env' }
+
+      before do
+        stub_const('ENV', { 'BACKLOG_OAUTH_REFRESH_TOKEN' => refresh_token_env })
+      end
+
+      it { is_expected.to eq refresh_token_env }
+    end
+  end
+
+  describe '#authorization_url' do
+    let(:client) { described_class.new(initialized_params) }
+    let(:redirect_uri) { 'http://example.com' }
+    let(:state) { 'test-state' }
+
+    let(:expected_base_url) { Regexp.escape("https://#{space_id}.backlog.jp/OAuth2AccessRequest.action") }
+    let(:expected_base_params) { Regexp.escape("?response_type=code&client_id=#{client_id}") }
+    let(:expected_redirect_uri) { Regexp.escape("&redirect_uri=#{redirect_uri}") }
+    let(:expected_state) { Regexp.escape("&state=#{state}") }
+
+    subject { client.authorization_url }
+
+    context 'when preset @client_id' do
+      let(:initialized_params) { { space_id: space_id, client_id: client_id } }
+
+      it { is_expected.to match expected_base_url }
+      it { is_expected.to match expected_base_params }
+      it { is_expected.not_to match expected_redirect_uri }
+      it { is_expected.not_to match expected_state }
+    end
+
+    context 'when preset @client_id and @redirect_uri' do
+      let(:initialized_params) { { space_id: space_id, client_id: client_id, redirect_uri: redirect_uri } }
+
+      it { is_expected.to match expected_base_url }
+      it { is_expected.to match expected_base_params }
+      it { is_expected.to match expected_redirect_uri }
+      it { is_expected.not_to match expected_state }
+    end
+
+    context 'when preset @client_id and @state' do
+      let(:initialized_params) { { space_id: space_id, client_id: client_id, state: state } }
+
+      it { is_expected.to match expected_base_url }
+      it { is_expected.to match expected_base_params }
+      it { is_expected.not_to match expected_redirect_uri }
+      it { is_expected.to match expected_state }
+    end
+
+    context 'when preset @client_id, @redirect_uri, and @state' do
+      let(:initialized_params) do
+        { space_id: space_id, client_id: client_id, redirect_uri: redirect_uri, state: state }
+      end
+
+      it { is_expected.to match expected_base_url }
+      it { is_expected.to match expected_base_params }
+      it { is_expected.to match expected_redirect_uri }
+      it { is_expected.to match expected_state }
     end
   end
 
@@ -115,12 +244,32 @@ describe BacklogKit::Client do
   end
 
   describe '#get' do
+    let(:client) { described_class.new(initialized_params) }
+    let(:access_token) { 'test-access-token' }
     let(:request_method) { :get }
     let(:camelized_request_params) { { query: request_params } }
     let(:response_status) { 200 }
     let(:response) { client.get(request_path, underscored_request_params) }
 
-    it_behaves_like 'a normal http client'
+    context 'when preset @access_token' do
+      let(:initialized_params) { { space_id: space_id, api_key: nil, access_token: access_token } }
+
+      before do
+        stub_oauth_api_request
+      end
+
+      subject { response }
+
+      it 'makes a oauth request' do
+        subject
+        expect(stub_oauth_api_request).to have_been_requested
+      end
+    end
+
+    context 'when preset @api_key and @access_token' do
+      let(:initialized_params) { { space_id: space_id, api_key: api_key, access_token: access_token } }
+      it_behaves_like 'a normal http client'
+    end
   end
 
   describe '#post' do
@@ -162,6 +311,21 @@ describe BacklogKit::Client do
   def stub_api_request
     stub_request(request_method, "https://#{space_id}.backlog.jp/api/v2/#{request_path}?apiKey=#{api_key}")
       .with({ headers: { 'User-Agent' => described_class::USER_AGENT } }.merge(camelized_request_params))
+      .to_return(
+        headers: { 'Content-Type' => 'application/json; charset=utf-8' },
+        status: response_status,
+        body: { 'test' => 'test' }.to_json
+      )
+  end
+
+  def stub_oauth_api_request
+    stub_request(request_method, "https://#{space_id}.backlog.jp/api/v2/#{request_path}")
+      .with({
+        headers: {
+          'User-Agent' => described_class::USER_AGENT,
+          'Authorization' => "Bearer #{access_token}"
+        }
+      }.merge(camelized_request_params))
       .to_return(
         headers: { 'Content-Type' => 'application/json; charset=utf-8' },
         status: response_status,

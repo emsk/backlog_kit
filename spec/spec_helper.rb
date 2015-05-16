@@ -39,5 +39,8 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
   c.filter_sensitive_data('<BACKLOG_SPACE_ID>.') { "#{ENV['BACKLOG_SPACE_ID']}." }
   c.filter_sensitive_data('<BACKLOG_API_KEY>') { ENV['BACKLOG_API_KEY'] }
+  c.filter_sensitive_data('<BACKLOG_OAUTH_CLIENT_ID>') { ENV['BACKLOG_OAUTH_CLIENT_ID'] }
+  c.filter_sensitive_data('<BACKLOG_OAUTH_CLIENT_SECRET>') { ENV['BACKLOG_OAUTH_CLIENT_SECRET'] }
+  c.filter_sensitive_data('<BACKLOG_OAUTH_REFRESH_TOKEN>') { ENV['BACKLOG_OAUTH_REFRESH_TOKEN'] }
   c.filter_sensitive_data('<BACKLOG_KIT_USER_AGENT>') { BacklogKit::Client::USER_AGENT }
 end
