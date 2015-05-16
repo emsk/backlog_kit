@@ -58,6 +58,9 @@ client.delete('groups/3712') # DELETE
 | :----------- | :---------- |
 | `BACKLOG_SPACE_ID` | Your Backlog SPACE ID. |
 | `BACKLOG_API_KEY` | Your Backlog API KEY. |
+| `BACKLOG_OAUTH_CLIENT_ID` | CLIENT ID of your Backlog application. |
+| `BACKLOG_OAUTH_CLIENT_SECRET` | CLIENT SECRET of your Backlog application. |
+| `BACKLOG_OAUTH_REFRESH_TOKEN` | REFRESH TOKEN obtained from the Backlog token endpoint. |
 
 You can create instance more easily.
 
