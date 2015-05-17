@@ -59,7 +59,7 @@ client.delete('groups/3712') # DELETE
 
 ## Authentication
 
-### API Key
+### API key
 
 ```ruby
 client = BacklogKit::Client.new(
@@ -94,7 +94,7 @@ You can create instance more easily.
 client = BacklogKit::Client.new
 ```
 
-## Supported API
+## Supported APIs
 
 * Git
 * Group
