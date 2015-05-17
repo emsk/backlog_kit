@@ -111,6 +111,12 @@ client = BacklogKit::Client.new
 
 See [RDoc](http://www.rubydoc.info/gems/backlog_kit) for more details.
 
+## Supported Ruby Versions
+
+* Ruby 2.0.0
+* Ruby 2.1
+* Ruby 2.2
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
