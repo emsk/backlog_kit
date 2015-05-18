@@ -4,4 +4,8 @@ require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec)
 
 task test: :spec
+
+require 'yard'
+YARD::Rake::YardocTask.new
+
 task default: :spec
