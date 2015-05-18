@@ -109,7 +109,7 @@ client = BacklogKit::Client.new
 * User
 * Wiki
 
-See [RDoc](http://www.rubydoc.info/gems/backlog_kit) for more details.
+See [documentation](http://www.rubydoc.info/gems/backlog_kit) for more details.
 
 ## Supported Ruby Versions
 
