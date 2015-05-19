@@ -19,6 +19,10 @@ require 'backlog_kit/response/raise_error'
 require 'backlog_kit/hash_extensions'
 
 module BacklogKit
+
+  # Client for the Backlog API
+  #
+  # @see http://developer.nulab-inc.com/docs/backlog
   class Client
     include BacklogKit::Client::Authorization
     include BacklogKit::Client::Git
@@ -47,6 +51,14 @@ module BacklogKit
       :access_token
     )
 
+    # Initialize a new Client object with given options
+    #
+    # @param options [Hash] Initialize options
+    # @option options [String] :space_id Backlog space id
+    # @option options [String] :api_key Backlog api key
+    # @option options [String] :client_id Backlog OAuth client id
+    # @option options [String] :client_secret Backlog OAuth client secret
+    # @option options [String] :refresh_token Backlog OAuth refresh token
     def initialize(options = {})
       @space_id      = ENV['BACKLOG_SPACE_ID']
       @api_key       = ENV['BACKLOG_API_KEY']
@@ -59,6 +71,9 @@ module BacklogKit
       end
     end
 
+    # Generate an OAuth authorization URL
+    #
+    # @return [String] OAuth authorization URL
     def authorization_url
       url = "#{host}/OAuth2AccessRequest.action?response_type=code&client_id=#{@client_id}"
       url += "&redirect_uri=#{URI.escape(@redirect_uri)}" if @redirect_uri
@@ -66,22 +81,47 @@ module BacklogKit
       url
     end
 
+    # Make a HTTP GET request
+    #
+    # @param path [String] Path for request
+    # @param params [Hash] Request parameters
+    # @return [BacklogKit::Response] Response from API server
     def get(path, params = {})
       request(:get, path, params)
     end
 
+    # Make a HTTP POST request
+    #
+    # @param path [String] Path for request
+    # @param params [Hash] Request parameters
+    # @return [BacklogKit::Response] Response from API server
     def post(path, params = {})
       request(:post, path, params)
     end
 
+    # Make a HTTP PUT request
+    #
+    # @param path [String] Path for request
+    # @param params [Hash] Request parameters
+    # @return [BacklogKit::Response] Response from API server
     def put(path, params = {})
       request(:put, path, params)
     end
 
+    # Make a HTTP PATCH request
+    #
+    # @param path [String] Path for request
+    # @param params [Hash] Request parameters
+    # @return [BacklogKit::Response] Response from API server
     def patch(path, params = {})
       request(:patch, path, params)
     end
 
+    # Make a HTTP DELETE request
+    #
+    # @param path [String] Path for request
+    # @param params [Hash] Request parameters
+    # @return [BacklogKit::Response] Response from API server
     def delete(path, params = {})
       request(:delete, path, params)
     end
