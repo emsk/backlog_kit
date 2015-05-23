@@ -90,8 +90,8 @@ describe BacklogKit::Client::Notification do
     end
   end
 
-  describe '#reset_already_read_notification_count', vcr: { cassette_name: 'notification/reset_already_read_notification_count' } do
-    let(:response) { client.reset_already_read_notification_count }
+  describe '#reset_unread_notification_count', vcr: { cassette_name: 'notification/reset_unread_notification_count' } do
+    let(:response) { client.reset_unread_notification_count }
     let(:content_type) { 'application/json; charset=utf-8' }
     let(:status_code) { 200 }
 

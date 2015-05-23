@@ -9,7 +9,7 @@ module BacklogKit
         get('notifications/count', params)
       end
 
-      def reset_already_read_notification_count
+      def reset_unread_notification_count
         post('notifications/markAsRead')
       end
 
