@@ -11,7 +11,7 @@ module BacklogKit
         get('space')
       end
 
-      # Get list of groups
+      # Get list of space activities
       #
       # @param params [Hash] Request parameters
       # @return [BacklogKit::Response] List of recent updates in your space
