@@ -1,5 +1,15 @@
 module BacklogKit
+
+  # Custom error class for rescuing from Backlog errors
+  #
+  # @see http://developer.nulab-inc.com/docs/backlog/error-response
   class Error < StandardError
+
+    # Make a custom error message
+    #
+    # @param response [Hash] Error response
+    # @param index [Integer] Index of the error
+    # @return [String] Error message
     def self.build_error_message(response, index)
       message = "[ERROR #{index}] "
       message += "#{self.name.demodulize} - #{response['message']} (CODE: #{response['code']})"
