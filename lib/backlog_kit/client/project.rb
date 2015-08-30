@@ -6,9 +6,10 @@ module BacklogKit
 
       # Get list of projects
       #
+      # @param params [Hash] Request parameters
       # @return [BacklogKit::Response] List of projects
-      def get_projects
-        get('projects')
+      def get_projects(params = {})
+        get('projects', params)
       end
 
       # Get a project

@@ -5,23 +5,40 @@ describe BacklogKit::Client::Project do
     BacklogKit::Client.new(space_id: ENV['BACKLOG_SPACE_ID'], api_key: ENV['BACKLOG_API_KEY'])
   end
 
-  describe '#get_projects', vcr: { cassette_name: 'project/get_projects' } do
-    let(:response) { client.get_projects }
+  describe '#get_projects' do
+    shared_examples_for 'a response body of #get_projects' do
+      describe '#body' do
+        subject { response.body }
+        it { is_expected.to be_a Array }
+
+        describe '#[0]' do
+          let(:project) { response.body[0] }
+          it_behaves_like 'a resource of project'
+        end
+      end
+    end
+
+    let(:response) { client.get_projects(request_params) }
     let(:content_type) { 'application/json; charset=utf-8' }
     let(:status_code) { 200 }
 
-    it_behaves_like 'a normal response'
-    it_behaves_like 'a normal response headers'
-    it_behaves_like 'a normal response status'
+    context 'given valid params', vcr: { cassette_name: 'project/get_projects_given_valid_params' } do
+      let(:request_params) { { archived: false } }
 
-    describe '#body' do
-      subject { response.body }
-      it { is_expected.to be_a Array }
+      it_behaves_like 'a normal response'
+      it_behaves_like 'a normal response headers'
+      it_behaves_like 'a normal response status'
+      it_behaves_like 'a response body of #get_projects'
+    end
 
-      describe '#[0]' do
-        let(:project) { response.body[0] }
-        it_behaves_like 'a resource of project'
-      end
+    context 'given invalid params', vcr: { cassette_name: 'project/get_projects_given_invalid_params' } do
+      let(:invalid_param_key) { 'test' }
+      let(:request_params) { { invalid_param_key.to_sym => 'test' } }
+
+      it_behaves_like 'a normal response'
+      it_behaves_like 'a normal response headers'
+      it_behaves_like 'a normal response status'
+      it_behaves_like 'a response body of #get_projects'
     end
   end
 
