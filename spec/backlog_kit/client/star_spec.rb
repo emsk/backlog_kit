@@ -34,4 +34,24 @@ describe BacklogKit::Client::Status do
     it_behaves_like 'a normal response status'
     it_behaves_like 'a response body of no content'
   end
+
+  describe '#add_pull_request_star', vcr: { cassette_name: 'star/add_pull_request_star' } do
+    let(:response) { client.add_pull_request_star(62) }
+    let(:status_code) { 204 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a response headers of no content'
+    it_behaves_like 'a normal response status'
+    it_behaves_like 'a response body of no content'
+  end
+
+  describe '#add_pull_request_comment_star', vcr: { cassette_name: 'star/add_pull_request_comment_star' } do
+    let(:response) { client.add_pull_request_comment_star(168) }
+    let(:status_code) { 204 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a response headers of no content'
+    it_behaves_like 'a normal response status'
+    it_behaves_like 'a response body of no content'
+  end
 end

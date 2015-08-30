@@ -27,6 +27,22 @@ module BacklogKit
       def add_wiki_star(wiki_id)
         post('stars', wiki_id: wiki_id)
       end
+
+      # Add a star to a pull request
+      #
+      # @param pull_request_id [Integer, String] Pull request id
+      # @return [BacklogKit::Response] No content response
+      def add_pull_request_star(pull_request_id)
+        post('stars', pull_request_id: pull_request_id)
+      end
+
+      # Add a star to a pull request comment
+      #
+      # @param pull_request_comment_id [Integer, String] Pull request comment id
+      # @return [BacklogKit::Response] No content response
+      def add_pull_request_comment_star(pull_request_comment_id)
+        post('stars', pull_request_comment_id: pull_request_comment_id)
+      end
     end
   end
 end
