@@ -699,4 +699,292 @@ describe BacklogKit::Client::Project do
     it_behaves_like 'a normal response status'
     it_behaves_like 'a response body of webhook'
   end
+
+  describe '#get_pull_requests', vcr: { cassette_name: 'project/get_pull_requests' } do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:response) { client.get_pull_requests(project_id, repository_id) }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+
+    describe '#body' do
+      subject { response.body }
+      it { is_expected.to be_a Array }
+
+      describe '#[0]' do
+        let(:pull_request) { response.body[0] }
+        it_behaves_like 'a resource of pull request'
+      end
+    end
+  end
+
+  describe '#get_pull_request_count', vcr: { cassette_name: 'project/get_pull_request_count' } do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:response) { client.get_pull_request_count(project_id, repository_id) }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+
+    describe '#body' do
+      let(:count) { response.body }
+      it_behaves_like 'a resource of count'
+    end
+  end
+
+  shared_examples_for 'a response body of pull request' do
+    describe '#body' do
+      let(:pull_request) { response.body }
+      it_behaves_like 'a resource of pull request'
+    end
+  end
+
+  describe '#get_pull_request', vcr: { cassette_name: 'project/get_pull_request' } do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:number) { 1 }
+    let(:response) { client.get_pull_request(project_id, repository_id, number) }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+    it_behaves_like 'a response body of pull request'
+  end
+
+  describe '#create_pull_request' do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:response) { client.create_pull_request(project_id, repository_id, request_params) }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    context 'given valid params', vcr: { cassette_name: 'project/create_pull_request_given_valid_params' } do
+      let(:request_params) do
+        {
+          summary: 'テストプルリクエスト1',
+          description: 'テストプルリクエスト1の詳細です。',
+          base: 'master',
+          branch: 'feature-1',
+          assignee_id: 47893,
+          issue_id: 1267081
+        }
+      end
+
+      it_behaves_like 'a normal response'
+      it_behaves_like 'a normal response headers'
+      it_behaves_like 'a normal response status'
+      it_behaves_like 'a response body of pull request'
+    end
+
+    context 'given invalid params', vcr: { cassette_name: 'project/create_pull_request_given_invalid_params' } do
+      let(:invalid_param_key) { 'test' }
+      let(:request_params) { { invalid_param_key.to_sym => 'test' } }
+
+      it_behaves_like 'a invalid request error'
+    end
+  end
+
+  describe '#update_pull_request' do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:number) { 1 }
+    let(:response) { client.update_pull_request(project_id, repository_id, number, request_params) }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    context 'given no params', vcr: { cassette_name: 'project/update_pull_request_given_no_params' } do
+      let(:request_params) { {} }
+
+      it_behaves_like 'a normal response'
+      it_behaves_like 'a normal response headers'
+      it_behaves_like 'a normal response status'
+      it_behaves_like 'a response body of pull request'
+    end
+
+    context 'given valid params', vcr: { cassette_name: 'project/update_pull_request_given_valid_params' } do
+      let(:request_params) { { summary: 'テストプルリクエスト2' } }
+
+      it_behaves_like 'a normal response'
+      it_behaves_like 'a normal response headers'
+      it_behaves_like 'a normal response status'
+      it_behaves_like 'a response body of pull request'
+    end
+
+    context 'given invalid params', vcr: { cassette_name: 'project/update_pull_request_given_invalid_params' } do
+      let(:invalid_param_key) { 'test' }
+      let(:request_params) { { invalid_param_key.to_sym => 'test' } }
+
+      it_behaves_like 'a invalid request error'
+    end
+  end
+
+  describe '#get_pull_request_comments', vcr: { cassette_name: 'project/get_pull_request_comments' } do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:number) { 2 }
+    let(:response) { client.get_pull_request_comments(project_id, repository_id, number) }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+
+    describe '#body' do
+      subject { response.body }
+      it { is_expected.to be_a Array }
+
+      describe '#[0]' do
+        let(:comment) { response.body[0] }
+        it_behaves_like 'a resource of comment', change_log: false, star: true, notification: true
+      end
+    end
+  end
+
+  describe '#get_pull_request_comment_count', vcr: { cassette_name: 'project/get_pull_request_comment_count' } do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:number) { 2 }
+    let(:response) { client.get_pull_request_comment_count(project_id, repository_id, number) }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+
+    describe '#body' do
+      let(:count) { response.body }
+      it_behaves_like 'a resource of count'
+    end
+  end
+
+  describe '#add_pull_request_comment' do
+    shared_examples_for 'a response body of #add_pull_request_comment' do
+      describe '#body' do
+        subject { response.body }
+        it { is_expected.to be_a Array }
+
+        describe '#[0]' do
+          let(:comment) { response.body[0] }
+          it_behaves_like 'a resource of comment', change_log: false, star: true, notification: true
+        end
+      end
+    end
+
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:number) { 2 }
+    let(:response) { client.add_pull_request_comment(project_id, repository_id, number, request_params) }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    context 'given valid params', vcr: { cassette_name: 'project/add_pull_request_comment_given_valid_params' } do
+      let(:request_params) { { content: 'テストコメント1' } }
+
+      it_behaves_like 'a normal response'
+      it_behaves_like 'a normal response headers'
+      it_behaves_like 'a normal response status'
+      it_behaves_like 'a response body of #add_pull_request_comment'
+    end
+
+    context 'given invalid params', vcr: { cassette_name: 'project/add_pull_request_comment_given_invalid_params' } do
+      let(:invalid_param_key) { 'test' }
+      let(:request_params) { { invalid_param_key.to_sym => 'test' } }
+
+      it_behaves_like 'a normal response'
+      it_behaves_like 'a normal response headers'
+      it_behaves_like 'a normal response status'
+      it_behaves_like 'a response body of #add_pull_request_comment'
+    end
+  end
+
+  describe '#update_pull_request_comment', vcr: { cassette_name: 'project/update_pull_request_comment' } do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:number) { 2 }
+    let(:comment_id) { 449 }
+    let(:response) { client.update_pull_request_comment(project_id, repository_id, number, comment_id, 'テストコメント2') }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+
+    describe '#body' do
+      let(:comment) { response.body }
+      it_behaves_like 'a resource of comment', change_log: false, star: true, notification: true
+    end
+  end
+
+  describe '#get_pull_request_attachments', vcr: { cassette_name: 'project/get_pull_request_attachments' } do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:number) { 2 }
+    let(:response) { client.get_pull_request_attachments(project_id, repository_id, number) }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+
+    describe '#body' do
+      subject { response.body }
+      it { is_expected.to be_a Array }
+
+      describe '#[0]' do
+        let(:pull_request_attachment) { response.body[0] }
+        it_behaves_like 'a resource of pull request attachment'
+      end
+    end
+  end
+
+  describe '#download_pull_request_attachment', vcr: { cassette_name: 'project/download_pull_request_attachment' } do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:number) { 2 }
+    let(:attachment_id) { 4 }
+    let(:response) { client.download_pull_request_attachment(project_id, repository_id, number, attachment_id) }
+    let(:content_type) { 'image/png' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+
+    describe '#body' do
+      let(:resource_file) { response.body }
+      it_behaves_like 'a resource file'
+    end
+  end
+
+  describe '#remove_pull_request_attachment', vcr: { cassette_name: 'project/remove_pull_request_attachment' } do
+    let(:project_id) { 31581 }
+    let(:repository_id) { 13844 }
+    let(:number) { 2 }
+    let(:attachment_id) { 4 }
+    let(:response) { client.remove_pull_request_attachment(project_id, repository_id, number, attachment_id) }
+    let(:content_type) { 'application/json; charset=utf-8' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+
+    describe '#body' do
+      let(:pull_request_attachment) { response.body }
+      it_behaves_like 'a resource of pull request attachment'
+    end
+  end
 end

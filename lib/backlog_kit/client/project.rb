@@ -303,6 +303,130 @@ module BacklogKit
       def remove_webhook(project_id_or_key, webhook_id)
         delete("projects/#{project_id_or_key}/webhooks/#{webhook_id}")
       end
+
+      # Get list of pull requests
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @return [BacklogKit::Response] List of pull requests
+      def get_pull_requests(project_id_or_key, repository_id_or_name)
+        get("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests")
+      end
+
+      # Get number of pull requests
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @return [BacklogKit::Response] Number of pull requests
+      def get_pull_request_count(project_id_or_key, repository_id_or_name)
+        get("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests/count")
+      end
+
+      # Get a pull request
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @param pull_request_number [Integer, String] Pull request number
+      # @return [BacklogKit::Response] The pull request information
+      def get_pull_request(project_id_or_key, repository_id_or_name, pull_request_number)
+        get("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests/#{pull_request_number}")
+      end
+
+      # Create a new pull request
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @param params [Hash] Request parameters
+      # @return [BacklogKit::Response] The pull request information
+      def create_pull_request(project_id_or_key, repository_id_or_name, params = {})
+        post("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests", params)
+      end
+
+      # Update a pull request
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @param pull_request_number [Integer, String] Pull request number
+      # @param params [Hash] Request parameters
+      # @return [BacklogKit::Response] The pull request information
+      def update_pull_request(project_id_or_key, repository_id_or_name, pull_request_number, params = {})
+        patch("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests/#{pull_request_number}", params)
+      end
+
+      # Get list of comments in pull request
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @param pull_request_number [Integer, String] Pull request number
+      # @return [BacklogKit::Response] List of comments
+      def get_pull_request_comments(project_id_or_key, repository_id_or_name, pull_request_number)
+        get("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests/#{pull_request_number}/comments")
+      end
+
+      # Get number of comments in pull request
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @param pull_request_number [Integer, String] Pull request number
+      # @return [BacklogKit::Response] Number of comments
+      def get_pull_request_comment_count(project_id_or_key, repository_id_or_name, pull_request_number)
+        get("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests/#{pull_request_number}/comments/count")
+      end
+
+      # Add a comment to a pull request
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @param pull_request_number [Integer, String] Pull request number
+      # @param params [Hash] Request parameters
+      # @return [BacklogKit::Response] The comment information
+      def add_pull_request_comment(project_id_or_key, repository_id_or_name, pull_request_number, params = {})
+        get("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests/#{pull_request_number}/comments", params)
+      end
+
+      # Update a comment in pull request
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @param pull_request_number [Integer, String] Pull request number
+      # @param comment_id [Integer, String] Comment id
+      # @param content [String] Content of the comment
+      # @return [BacklogKit::Response] The comment information
+      def update_pull_request_comment(project_id_or_key, repository_id_or_name, pull_request_number, comment_id, content)
+        patch("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests/#{pull_request_number}/comments/#{comment_id}", content: content)
+      end
+
+      # Get list of attachment files on pull request
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @param pull_request_number [Integer, String] Pull request number
+      # @return [BacklogKit::Response] List of files
+      def get_pull_request_attachments(project_id_or_key, repository_id_or_name, pull_request_number)
+        get("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests/#{pull_request_number}/attachments")
+      end
+
+      # Download an attachment file on pull request
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @param pull_request_number [Integer, String] Pull request number
+      # @param attachment_id [Integer, String] Attachment file id
+      # @return [BacklogKit::Response] Binary data
+      def download_pull_request_attachment(project_id_or_key, repository_id_or_name, pull_request_number, attachment_id)
+        get("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests/#{pull_request_number}/attachments/#{attachment_id}")
+      end
+
+      # Remove an attachment file from pull request
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param repository_id_or_name [Integer, String] Repository id or repository name
+      # @param pull_request_number [Integer, String] Pull request number
+      # @param attachment_id [Integer, String] Attachment file id
+      # @return [BacklogKit::Response] The pull request information
+      def remove_pull_request_attachment(project_id_or_key, repository_id_or_name, pull_request_number, attachment_id)
+        delete("projects/#{project_id_or_key}/git/repositories/#{repository_id_or_name}/pullRequests/#{pull_request_number}/attachments/#{attachment_id}")
+      end
     end
   end
 end

@@ -641,6 +641,88 @@ shared_examples_for 'a resource of project disk usage' do
   it { is_expected.to respond_to(:git) }
 end
 
+shared_examples_for 'a resource of pull request' do
+  subject { pull_request }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:projectId) }
+  it { is_expected.to respond_to(:project_id) }
+  it { is_expected.to respond_to(:number) }
+  it { is_expected.to respond_to(:summary) }
+  it { is_expected.to respond_to(:description) }
+  it { is_expected.to respond_to(:base) }
+  it { is_expected.to respond_to(:branch) }
+  it { is_expected.to respond_to(:status) }
+  it { is_expected.to respond_to(:assignee) }
+  it { is_expected.to respond_to(:issue) }
+  it { is_expected.to respond_to(:baseCommit) }
+  it { is_expected.to respond_to(:base_commit) }
+  it { is_expected.to respond_to(:branchCommit) }
+  it { is_expected.to respond_to(:branch_commit) }
+  it { is_expected.to respond_to(:closeAt) }
+  it { is_expected.to respond_to(:close_at) }
+  it { is_expected.to respond_to(:mergeAt) }
+  it { is_expected.to respond_to(:merge_at) }
+  it { is_expected.to respond_to(:createdUser) }
+  it { is_expected.to respond_to(:created_user) }
+  it { is_expected.to respond_to(:created) }
+  it { is_expected.to respond_to(:updatedUser) }
+  it { is_expected.to respond_to(:updated_user) }
+  it { is_expected.to respond_to(:updated) }
+
+  describe '#status' do
+    let(:status) { pull_request.status }
+    it_behaves_like 'a resource of status'
+  end
+
+  describe '#assignee' do
+    let(:user) { pull_request.assignee }
+    it_behaves_like 'a resource of user'
+  end
+
+  describe '#issue' do
+    let(:issue) { pull_request.issue }
+    it_behaves_like 'a resource of issue', {
+      resolution: false,
+      assignee: false,
+      category: false,
+      version: false,
+      milestone: false,
+      attachment: false,
+      shared_file: false,
+      star: false
+    }
+  end
+
+  describe '#created_user' do
+    let(:user) { pull_request.created_user }
+    it_behaves_like 'a resource of user'
+  end
+
+  describe '#updated_user' do
+    let(:user) { pull_request.updated_user }
+    it_behaves_like 'a resource of user'
+  end
+end
+
+shared_examples_for 'a resource of pull request attachment' do
+  subject { pull_request_attachment }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:size) }
+  it { is_expected.to respond_to(:createdUser) }
+  it { is_expected.to respond_to(:created_user) }
+  it { is_expected.to respond_to(:created) }
+
+  describe '#created_user' do
+    let(:user) { pull_request_attachment.created_user }
+    it_behaves_like 'a resource of user'
+  end
+end
+
 shared_examples_for 'a resource of recently viewed issue' do
   subject { recently_viewed_issue }
 
