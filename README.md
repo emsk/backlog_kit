@@ -117,6 +117,7 @@ See [documentation](http://www.rubydoc.info/gems/backlog_kit) for more details.
 * Ruby 2.0.0
 * Ruby 2.1
 * Ruby 2.2
+* Ruby 2.3
 
 ## Development
 
