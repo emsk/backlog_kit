@@ -6,6 +6,7 @@
 [![Code Climate](https://codeclimate.com/github/emsk/backlog_kit/badges/gpa.svg)](https://codeclimate.com/github/emsk/backlog_kit)
 [![Dependency Status](https://gemnasium.com/emsk/backlog_kit.svg)](https://gemnasium.com/emsk/backlog_kit)
 [![Inline docs](http://inch-ci.org/github/emsk/backlog_kit.svg?branch=master)](http://inch-ci.org/github/emsk/backlog_kit)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Ruby wrapper for the Nulab's Backlog API.
 
