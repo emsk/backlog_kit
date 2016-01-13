@@ -126,6 +126,29 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
+### Dependencies
+
+##### Production
+
+* [activesupport](https://github.com/rails/rails/tree/master/activesupport)
+* [faraday](https://github.com/lostisland/faraday)
+* [faraday_middleware](https://github.com/lostisland/faraday_middleware)
+
+##### Development
+
+* [bundler](https://github.com/bundler/bundler)
+* [rake](https://github.com/ruby/rake)
+* [rspec](https://github.com/rspec/rspec)
+* [simplecov](https://github.com/colszowka/simplecov)
+* [webmock](https://github.com/bblimke/webmock)
+* [multi_json](https://github.com/intridea/multi_json)
+* [vcr](https://github.com/vcr/vcr)
+* [coveralls](https://github.com/lemurheavy/coveralls-ruby)
+* [yard](https://github.com/lsegal/yard)
+* [redcarpet](https://github.com/vmg/redcarpet)
+
+See [`backlog_kit.gemspec`](backlog_kit.gemspec).
+
 ## Contributing
 
 1. Fork it ( https://github.com/emsk/backlog_kit/fork )
