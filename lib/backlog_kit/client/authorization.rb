@@ -1,6 +1,5 @@
 module BacklogKit
   class Client
-
     # Methods for OAuth 2.0 authorization
     #
     # @see http://developer.nulab-inc.com/docs/backlog/auth

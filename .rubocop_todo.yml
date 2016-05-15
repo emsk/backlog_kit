@@ -91,28 +91,6 @@ Style/DoubleNegation:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: empty_lines, no_empty_lines
-Style/EmptyLinesAroundClassBody:
-  Exclude:
-    - 'lib/backlog_kit/client/authorization.rb'
-    - 'lib/backlog_kit/client/git.rb'
-    - 'lib/backlog_kit/client/group.rb'
-    - 'lib/backlog_kit/client/issue.rb'
-    - 'lib/backlog_kit/client/notification.rb'
-    - 'lib/backlog_kit/client/priority.rb'
-    - 'lib/backlog_kit/client/project.rb'
-    - 'lib/backlog_kit/client/resolution.rb'
-    - 'lib/backlog_kit/client/space.rb'
-    - 'lib/backlog_kit/client/star.rb'
-    - 'lib/backlog_kit/client/status.rb'
-    - 'lib/backlog_kit/client/user.rb'
-    - 'lib/backlog_kit/client/wiki.rb'
-    - 'lib/backlog_kit/error.rb'
-    - 'lib/backlog_kit/hash_extensions.rb'
-
-# Offense count: 15
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: empty_lines, no_empty_lines
 Style/EmptyLinesAroundModuleBody:
   Exclude:
     - 'lib/backlog_kit/client.rb'

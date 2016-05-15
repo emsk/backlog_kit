@@ -4,7 +4,6 @@ module BacklogKit
   #
   # @see http://developer.nulab-inc.com/docs/backlog/error-response
   class Error < StandardError
-
     # Make a custom error message
     #
     # @param response [Hash] Error response

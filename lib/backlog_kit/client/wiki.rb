@@ -1,6 +1,5 @@
 module BacklogKit
   class Client
-
     # Methods for the Wiki API
     module Wiki
 

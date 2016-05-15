@@ -1,6 +1,5 @@
 module BacklogKit
   class Client
-
     # Methods for the Group API
     module Group
 

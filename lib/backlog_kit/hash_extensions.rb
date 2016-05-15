@@ -1,7 +1,6 @@
 require 'active_support/core_ext/hash/keys'
 
 class Hash
-
   # Camelize all keys of the hash
   #
   # @return [Hash] The hash with camelized keys
