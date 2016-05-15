@@ -19,7 +19,6 @@ require 'backlog_kit/response/raise_error'
 require 'backlog_kit/hash_extensions'
 
 module BacklogKit
-
   # Client for the Backlog API
   #
   # @see http://developer.nulab-inc.com/docs/backlog

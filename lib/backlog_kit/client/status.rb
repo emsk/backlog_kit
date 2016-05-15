@@ -2,7 +2,6 @@ module BacklogKit
   class Client
     # Methods for the Status API
     module Status
-
       # Get list of statuses
       #
       # @return [BacklogKit::Response] List of statuses

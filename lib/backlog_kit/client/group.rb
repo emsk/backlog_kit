@@ -2,7 +2,6 @@ module BacklogKit
   class Client
     # Methods for the Group API
     module Group
-
       # Get list of groups
       #
       # @param params [Hash] Request parameters

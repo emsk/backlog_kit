@@ -2,7 +2,6 @@ module BacklogKit
   class Client
     # Methods for the Star API
     module Star
-
       # Add a star to an issue
       #
       # @param issue_id [Integer, String] Issue id

@@ -2,7 +2,6 @@ module BacklogKit
   class Client
     # Methods for the Issue API
     module Issue
-
       # Get list of issues
       #
       # @param params [Hash] Request parameters

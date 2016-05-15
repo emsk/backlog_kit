@@ -2,7 +2,6 @@ module BacklogKit
   class Client
     # Methods for the Git API
     module Git
-
       # Get list of git repositories
       #
       # @param project_id_or_key [Integer, String] Project id or project key

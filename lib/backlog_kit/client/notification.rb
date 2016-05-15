@@ -2,7 +2,6 @@ module BacklogKit
   class Client
     # Methods for the Notification API
     module Notification
-
       # Get list of own notifications
       #
       # @param params [Hash] Request parameters

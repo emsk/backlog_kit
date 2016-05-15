@@ -2,7 +2,6 @@ module BacklogKit
   class Client
     # Methods for the User API
     module User
-
       # Get list of users
       #
       # @return [BacklogKit::Response] List of users

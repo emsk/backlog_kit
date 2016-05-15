@@ -2,7 +2,6 @@ module BacklogKit
   class Client
     # Methods for the Space API
     module Space
-
       # Get a space
       #
       # @return [BacklogKit::Response] The space information

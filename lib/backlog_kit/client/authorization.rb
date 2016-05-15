@@ -4,7 +4,6 @@ module BacklogKit
     #
     # @see http://developer.nulab-inc.com/docs/backlog/auth
     module Authorization
-
       # Create a new access token
       #
       # @param oauth_code [String] Authorization code that you get from the authorization endpoint

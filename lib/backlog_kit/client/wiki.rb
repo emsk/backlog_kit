@@ -2,7 +2,6 @@ module BacklogKit
   class Client
     # Methods for the Wiki API
     module Wiki
-
       # Get list of wiki pages
       #
       # @param project_id_or_key [Integer, String] Project id or project key

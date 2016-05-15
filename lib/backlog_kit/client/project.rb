@@ -2,7 +2,6 @@ module BacklogKit
   class Client
     # Methods for the Project API
     module Project
-
       # Get list of projects
       #
       # @param params [Hash] Request parameters

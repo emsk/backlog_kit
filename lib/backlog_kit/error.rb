@@ -1,5 +1,4 @@
 module BacklogKit
-
   # Custom error class for rescuing from Backlog errors
   #
   # @see http://developer.nulab-inc.com/docs/backlog/error-response
