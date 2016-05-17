@@ -397,7 +397,7 @@ describe BacklogKit::Client::Issue do
     end
   end
 
- describe '#get_issue_attachments', vcr: { cassette_name: 'issue/get_issue_attachments' } do
+  describe '#get_issue_attachments', vcr: { cassette_name: 'issue/get_issue_attachments' } do
     let(:response) { client.get_issue_attachments(1188856) }
     let(:content_type) { 'application/json; charset=utf-8' }
     let(:status_code) { 200 }
