@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe BacklogKit::Client::Authorization do
-  shared_examples_for 'a response body of oauth token' do |flags|
+  shared_examples_for 'a response body of oauth token' do
     describe '#body' do
       let(:oauth_token) { response.body }
       it_behaves_like 'a resource of oauth token'
