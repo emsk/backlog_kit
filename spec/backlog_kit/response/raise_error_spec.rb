@@ -95,7 +95,7 @@ describe BacklogKit::Response::RaiseError do
     end
 
     context 'when json body is array' do
-      let(:faraday_env_body) { [ { 'key1' => 'value1' } ].to_json }
+      let(:faraday_env_body) { [{ 'key1' => 'value1' }].to_json }
       it { is_expected.not_to raise_error }
     end
 
