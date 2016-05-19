@@ -45,7 +45,7 @@ describe BacklogKit::Client::Project do
   shared_examples_for 'a response body of project' do
     describe '#body' do
       let(:project) { response.body }
-      it_behaves_like 'a resource of project' 
+      it_behaves_like 'a resource of project'
     end
   end
 
@@ -621,7 +621,7 @@ describe BacklogKit::Client::Project do
   shared_examples_for 'a response body of webhook' do
     describe '#body' do
       let(:webhook) { response.body }
-      it_behaves_like 'a resource of webhook' 
+      it_behaves_like 'a resource of webhook'
     end
   end
 

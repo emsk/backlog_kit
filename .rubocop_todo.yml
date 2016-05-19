@@ -126,12 +126,6 @@ Style/RegexpLiteral:
 
 # Offense count: 2
 # Cop supports --auto-correct.
-Style/TrailingWhitespace:
-  Exclude:
-    - 'spec/backlog_kit/client/project_spec.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
 Style/UnneededPercentQ:
   Exclude:
     - 'backlog_kit.gemspec'
