@@ -102,13 +102,6 @@ Style/MultilineMethodCallIndentation:
 Style/NumericLiterals:
   MinDigits: 8
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'backlog_kit.gemspec'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/RedundantSelf:
@@ -123,12 +116,6 @@ Style/RegexpLiteral:
   Exclude:
     - 'lib/backlog_kit/client.rb'
     - 'lib/backlog_kit/response/middleware.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/UnneededPercentQ:
-  Exclude:
-    - 'backlog_kit.gemspec'
 
 # Offense count: 1
 # Cop supports --auto-correct.
