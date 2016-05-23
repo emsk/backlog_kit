@@ -66,12 +66,6 @@ Style/Documentation:
     - 'lib/backlog_kit/response/middleware.rb'
     - 'lib/backlog_kit/response/raise_error.rb'
 
-# Offense count: 2
-Style/DoubleNegation:
-  Exclude:
-    - 'lib/backlog_kit/resource.rb'
-    - 'lib/backlog_kit/response/middleware.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
