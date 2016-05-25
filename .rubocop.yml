@@ -3,6 +3,9 @@ inherit_from: .rubocop_todo.yml
 Style/DoubleNegation:
   Enabled: false
 
+Style/NumericLiterals:
+  Enabled: false
+
 Style/PercentLiteralDelimiters:
   Enabled: false
 
