@@ -97,15 +97,6 @@ Style/RedundantSelf:
   Exclude:
     - 'lib/backlog_kit/error.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, AllowInnerSlashes.
-# SupportedStyles: slashes, percent_r, mixed
-Style/RegexpLiteral:
-  Exclude:
-    - 'lib/backlog_kit/client.rb'
-    - 'lib/backlog_kit/response/middleware.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: SupportedStyles, MinSize, WordRegex.
