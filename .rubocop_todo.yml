@@ -93,12 +93,6 @@ Style/MultilineMethodCallIndentation:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/RedundantSelf:
-  Exclude:
-    - 'lib/backlog_kit/error.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 # Configuration parameters: SupportedStyles, MinSize, WordRegex.
 # SupportedStyles: percent, brackets
 Style/WordArray:

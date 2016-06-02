@@ -9,6 +9,9 @@ Style/NumericLiterals:
 Style/PercentLiteralDelimiters:
   Enabled: false
 
+Style/RedundantSelf:
+  Enabled: false
+
 Style/RegexpLiteral:
   Enabled: false
 
