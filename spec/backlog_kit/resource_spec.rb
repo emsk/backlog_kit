@@ -3,7 +3,7 @@ require 'spec_helper'
 describe BacklogKit::Resource do
   describe '.new' do
     let(:value3) { '値3' }
-    let(:value4) { ['値4_1', '値4_2'] }
+    let(:value4) { %w(値4_1 値4_2) }
     let(:resource) do
       described_class.new(
         'key1' => { 'key2' => nil },

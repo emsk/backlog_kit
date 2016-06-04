@@ -90,10 +90,3 @@ Style/Lambda:
 # SupportedStyles: aligned, indented
 Style/MultilineMethodCallIndentation:
   Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: SupportedStyles, MinSize, WordRegex.
-# SupportedStyles: percent, brackets
-Style/WordArray:
-  EnforcedStyle: brackets
