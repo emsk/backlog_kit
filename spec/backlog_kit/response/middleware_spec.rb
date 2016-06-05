@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe BacklogKit::Response::Middleware do
   describe '.new' do
     let(:middleware) { described_class.new }

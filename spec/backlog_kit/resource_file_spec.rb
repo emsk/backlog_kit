@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe BacklogKit::ResourceFile do
   describe '.new' do
     let(:filename) { 'テストファイル.txt' }

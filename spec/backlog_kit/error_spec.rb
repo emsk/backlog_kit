@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe BacklogKit::Error do
   describe '.build_error_message' do
     let(:index) { 1 }

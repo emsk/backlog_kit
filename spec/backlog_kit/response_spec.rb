@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe BacklogKit::Response do
   describe '.new' do
     let(:faraday_response_mock) { instance_double('faraday response') }

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe BacklogKit::Client::Issue do
   let(:client) do
     BacklogKit::Client.new(space_id: ENV['BACKLOG_SPACE_ID'], api_key: ENV['BACKLOG_API_KEY'])

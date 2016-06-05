@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe BacklogKit::Client do
   let(:space_id) { 'test-space-id' }
   let(:api_key) { 'test-api-key' }

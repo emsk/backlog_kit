@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Hash do
   describe '#camelize_keys!' do
     let(:underscored_hash) do

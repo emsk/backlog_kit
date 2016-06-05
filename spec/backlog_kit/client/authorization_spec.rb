@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe BacklogKit::Client::Authorization do
   shared_examples_for 'a response body of oauth token' do
     describe '#body' do

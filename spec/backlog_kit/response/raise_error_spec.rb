@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe BacklogKit::Response::RaiseError do
   let(:faraday_env_mock) { instance_double('faraday env') }
   let(:faraday_env_headers) { { 'content-type' => 'application/json; charset=utf-8' } }

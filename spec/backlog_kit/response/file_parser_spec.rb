@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe BacklogKit::Response::FileParser do
   let(:faraday_env) { Faraday::Env.new }
   let(:faraday_env_headers) do

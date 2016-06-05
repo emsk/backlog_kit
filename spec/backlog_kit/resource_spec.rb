@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe BacklogKit::Resource do
   describe '.new' do
     let(:value3) { '値3' }
