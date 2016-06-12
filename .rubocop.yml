@@ -1,5 +1,8 @@
 inherit_from: .rubocop_todo.yml
 
+Style/AccessorMethodName:
+  Enabled: false
+
 Style/DoubleNegation:
   Enabled: false
 

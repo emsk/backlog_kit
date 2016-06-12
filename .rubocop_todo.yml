@@ -33,15 +33,6 @@ Performance/RedundantMerge:
     - 'lib/backlog_kit/client/issue.rb'
     - 'lib/backlog_kit/client/project.rb'
 
-# Offense count: 8
-Style/AccessorMethodName:
-  Exclude:
-    - 'lib/backlog_kit/client/priority.rb'
-    - 'lib/backlog_kit/client/resolution.rb'
-    - 'lib/backlog_kit/client/space.rb'
-    - 'lib/backlog_kit/client/status.rb'
-    - 'lib/backlog_kit/client/user.rb'
-
 # Offense count: 16
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
