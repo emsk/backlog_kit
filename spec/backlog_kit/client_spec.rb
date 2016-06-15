@@ -216,7 +216,7 @@ describe BacklogKit::Client do
         allow_any_instance_of(Faraday::Connection).to receive(:send).and_raise(Faraday::ConnectionFailed, message)
       end
 
-      subject { lambda { response } }
+      subject { -> { response } }
       it { is_expected.to raise_error(BacklogKit::Error, "ConnectionError - #{message}") }
     end
   end

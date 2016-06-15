@@ -65,16 +65,6 @@ Style/IndentationConsistency:
   Exclude:
     - 'spec/backlog_kit/client/issue_spec.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: line_count_dependent, lambda, literal
-Style/Lambda:
-  Exclude:
-    - 'spec/backlog_kit/client_spec.rb'
-    - 'spec/backlog_kit/response/raise_error_spec.rb'
-    - 'spec/support/shared_examples_for.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.

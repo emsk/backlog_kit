@@ -20,7 +20,7 @@ describe BacklogKit::Response::RaiseError do
   end
 
   describe '#on_complete' do
-    subject { lambda { response.on_complete(faraday_env_mock) } }
+    subject { -> { response.on_complete(faraday_env_mock) } }
 
     context 'when error code contains 1' do
       let(:error_code) { 1 }

@@ -1026,7 +1026,7 @@ shared_examples_for 'a resource file' do
 end
 
 shared_examples_for 'a invalid request error' do
-  subject { lambda { response.body } }
+  subject { -> { response.body } }
   it { is_expected.to raise_error(BacklogKit::Error, "[ERROR 1] InvalidRequestError - error.unknownParameter : #{invalid_param_key} (CODE: 7)") }
 end
 
@@ -1035,6 +1035,6 @@ shared_examples_for 'raise errors' do
     BacklogKit::Response::RaiseError::CODE_ERRORS[error_code].name.demodulize
   end
 
-  subject { lambda { response.on_complete(faraday_env_mock) } }
+  subject { -> { response.on_complete(faraday_env_mock) } }
   it { is_expected.to raise_error(BacklogKit::Error, "[ERROR 1] #{error_class_name} - エラー1 (CODE: #{error_code}), [ERROR 2] #{error_class_name} - エラー2 (CODE: #{error_code})") }
 end
