@@ -32,5 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'coveralls', '~> 0.8.1'
   spec.add_development_dependency 'yard', '~> 0.8.7'
   spec.add_development_dependency 'redcarpet', '~> 3.3'
-  spec.add_development_dependency 'rubocop', '~> 0.40.0'
+  spec.add_development_dependency 'rubocop', '~> 0.44.0'
 end
