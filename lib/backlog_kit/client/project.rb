@@ -25,7 +25,8 @@ module BacklogKit
       # @param params [Hash] Request parameters
       # @return [BacklogKit::Response] The project information
       def create_project(key, name, params = {})
-        params.merge!(key: key, name: name)
+        params[:key] = key
+        params[:name] = name
         post('projects', params)
       end
 
@@ -204,7 +205,7 @@ module BacklogKit
       # @param params [Hash] Request parameters
       # @return [BacklogKit::Response] The version information
       def add_version(project_id_or_key, name, params = {})
-        params.merge!(name: name)
+        params[:name] = name
         post("projects/#{project_id_or_key}/versions", params)
       end
 
@@ -279,7 +280,8 @@ module BacklogKit
       # @param params [Hash] Request parameters
       # @return [BacklogKit::Response] The webhook information
       def add_webhook(project_id_or_key, name, hook_url, params = {})
-        params.merge!(name: name, hook_url: hook_url)
+        params[:name] = name
+        params[:hook_url] = hook_url
         post("projects/#{project_id_or_key}/webhooks", params)
       end
 

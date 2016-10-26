@@ -32,7 +32,7 @@ module BacklogKit
       # @param params [Hash] Request parameters
       # @return [BacklogKit::Response] The issue information
       def create_issue(summary, params = {})
-        params.merge!(summary: summary)
+        params[:summary] = summary
         post('issues', params)
       end
 
@@ -86,7 +86,7 @@ module BacklogKit
       # @param params [Hash] Request parameters
       # @return [BacklogKit::Response] The comment information
       def add_comment(issue_id_or_key, content, params = {})
-        params.merge!(content: content)
+        params[:content] = content
         post("issues/#{issue_id_or_key}/comments", params)
       end
 

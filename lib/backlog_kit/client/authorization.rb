@@ -15,7 +15,7 @@ module BacklogKit
           grant_type: 'authorization_code',
           code: oauth_code
         }
-        params.merge!(redirect_uri: redirect_uri) if redirect_uri
+        params[:redirect_uri] = redirect_uri if redirect_uri
         request(:post, 'oauth2/token', params, true)
       end
 

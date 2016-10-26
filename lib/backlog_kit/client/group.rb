@@ -24,7 +24,7 @@ module BacklogKit
       # @param params [Hash] Request parameters
       # @return [BacklogKit::Response] The group information
       def create_group(name, params = {})
-        params.merge!(name: name)
+        params[:name] = name
         post('groups', params)
       end
 

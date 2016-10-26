@@ -20,18 +20,7 @@ Metrics/MethodLength:
 # Offense count: 1
 # Configuration parameters: CountComments.
 Metrics/ModuleLength:
-  Max: 139
-
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: MaxKeyValuePairs.
-Performance/RedundantMerge:
-  Exclude:
-    - 'lib/backlog_kit/client.rb'
-    - 'lib/backlog_kit/client/authorization.rb'
-    - 'lib/backlog_kit/client/group.rb'
-    - 'lib/backlog_kit/client/issue.rb'
-    - 'lib/backlog_kit/client/project.rb'
+  Max: 141
 
 # Offense count: 16
 # Cop supports --auto-correct.

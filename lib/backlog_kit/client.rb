@@ -152,7 +152,7 @@ module BacklogKit
 
     def request_headers
       headers = { 'User-Agent' => USER_AGENT }
-      headers.merge!('Authorization' => "Bearer #{@access_token}") if oauth_request?
+      headers['Authorization'] = "Bearer #{@access_token}" if oauth_request?
       headers
     end
 
