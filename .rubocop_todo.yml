@@ -22,17 +22,6 @@ Metrics/MethodLength:
 Metrics/ModuleLength:
   Max: 141
 
-# Offense count: 16
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: braces, no_braces, context_dependent
-Style/BracesAroundHashParameters:
-  Exclude:
-    - 'spec/backlog_kit/client/issue_spec.rb'
-    - 'spec/backlog_kit/client/wiki_spec.rb'
-    - 'spec/backlog_kit/client_spec.rb'
-    - 'spec/support/shared_examples_for.rb'
-
 # Offense count: 9
 Style/Documentation:
   Exclude:

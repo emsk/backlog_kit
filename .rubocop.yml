@@ -13,6 +13,9 @@ Metrics/BlockLength:
 Style/AccessorMethodName:
   Enabled: false
 
+Style/BracesAroundHashParameters:
+  Enabled: false
+
 Style/DoubleNegation:
   Enabled: false
 
