@@ -19,6 +19,9 @@ Style/BracesAroundHashParameters:
 Style/DoubleNegation:
   Enabled: false
 
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
 Style/NumericLiterals:
   Enabled: false
 
