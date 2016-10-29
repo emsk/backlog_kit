@@ -35,14 +35,6 @@ Style/Documentation:
     - 'lib/backlog_kit/response/middleware.rb'
     - 'lib/backlog_kit/response/raise_error.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: normal, rails
-Style/IndentationConsistency:
-  Exclude:
-    - 'spec/backlog_kit/client/issue_spec.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
