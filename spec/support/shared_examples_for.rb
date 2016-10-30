@@ -944,6 +944,34 @@ shared_examples_for 'a resource of version' do
   it { is_expected.to respond_to(:display_order) }
 end
 
+shared_examples_for 'a resource of watching' do
+  subject { watching }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:resourceAlreadyRead) }
+  it { is_expected.to respond_to(:resource_already_read) }
+  it { is_expected.to respond_to(:note) }
+  it { is_expected.to respond_to(:type) }
+  it { is_expected.to respond_to(:issue) }
+  it { is_expected.to respond_to(:created) }
+  it { is_expected.to respond_to(:updated) }
+
+  describe '#issue' do
+    let(:issue) { watching.issue }
+    it_behaves_like 'a resource of issue', {
+      resolution: false,
+      assignee: false,
+      category: false,
+      version: false,
+      milestone: false,
+      attachment: false,
+      shared_file: false,
+      star: false
+    }
+  end
+end
+
 shared_examples_for 'a resource of webhook' do
   subject { webhook }
 

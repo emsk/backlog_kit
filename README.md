@@ -109,6 +109,7 @@ client = BacklogKit::Client.new
 * Star
 * Status
 * User
+* Watching
 * Wiki
 
 See [documentation](http://www.rubydoc.info/gems/backlog_kit) for more details.
