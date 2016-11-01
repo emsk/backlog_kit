@@ -143,6 +143,7 @@ See [documentation](http://www.rubydoc.info/gems/backlog_kit) for more details.
 * [coveralls](https://github.com/lemurheavy/coveralls-ruby)
 * [yard](https://github.com/lsegal/yard)
 * [redcarpet](https://github.com/vmg/redcarpet)
+* [rubocop](https://github.com/bbatsov/rubocop)
 
 See [`backlog_kit.gemspec`](backlog_kit.gemspec).
 
