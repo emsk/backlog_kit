@@ -96,23 +96,11 @@ You can create instance more easily.
 client = BacklogKit::Client.new
 ```
 
-## Supported APIs
+## Supported Backlog API Version
 
-* Git
-* Group
-* Issue
-* Notification
-* Priority
-* Project
-* Resolution
-* Space
-* Star
-* Status
-* User
-* Watching
-* Wiki
+BacklogKit supports Backlog API [2.4.0](http://developer.nulab-inc.com/docs/backlog/changes#ver_2.4.0).
 
-See [documentation](http://www.rubydoc.info/gems/backlog_kit) for more details.
+BacklogKit's API documentation is [here](http://www.rubydoc.info/gems/backlog_kit).
 
 ## Supported Ruby Versions
 
