@@ -134,16 +134,16 @@ See [documentation](http://www.rubydoc.info/gems/backlog_kit) for more details.
 ##### Development
 
 * [bundler](https://github.com/bundler/bundler)
-* [rake](https://github.com/ruby/rake)
-* [rspec](https://github.com/rspec/rspec)
-* [simplecov](https://github.com/colszowka/simplecov)
-* [webmock](https://github.com/bblimke/webmock)
-* [multi_json](https://github.com/intridea/multi_json)
-* [vcr](https://github.com/vcr/vcr)
 * [coveralls](https://github.com/lemurheavy/coveralls-ruby)
-* [yard](https://github.com/lsegal/yard)
+* [multi_json](https://github.com/intridea/multi_json)
+* [rake](https://github.com/ruby/rake)
 * [redcarpet](https://github.com/vmg/redcarpet)
+* [rspec](https://github.com/rspec/rspec)
 * [rubocop](https://github.com/bbatsov/rubocop)
+* [simplecov](https://github.com/colszowka/simplecov)
+* [vcr](https://github.com/vcr/vcr)
+* [webmock](https://github.com/bblimke/webmock)
+* [yard](https://github.com/lsegal/yard)
 
 See [`backlog_kit.gemspec`](backlog_kit.gemspec).
 
