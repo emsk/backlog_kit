@@ -306,14 +306,18 @@ describe BacklogKit::Client do
     it_behaves_like 'a normal http client'
   end
 
+  let(:dummy_response) do
+    {
+      headers: { 'Content-Type' => 'application/json; charset=utf-8' },
+      status: response_status,
+      body: { 'test' => 'test' }.to_json
+    }
+  end
+
   def stub_api_request
     stub_request(request_method, "https://#{space_id}.backlog.jp/api/v2/#{request_path}?apiKey=#{api_key}")
       .with({ headers: { 'User-Agent' => described_class::USER_AGENT } }.merge(camelized_request_params))
-      .to_return(
-        headers: { 'Content-Type' => 'application/json; charset=utf-8' },
-        status: response_status,
-        body: { 'test' => 'test' }.to_json
-      )
+      .to_return(dummy_response)
   end
 
   def stub_oauth_api_request
@@ -324,10 +328,6 @@ describe BacklogKit::Client do
           'Authorization' => "Bearer #{access_token}"
         }
       }.merge(camelized_request_params))
-      .to_return(
-        headers: { 'Content-Type' => 'application/json; charset=utf-8' },
-        status: response_status,
-        body: { 'test' => 'test' }.to_json
-      )
+      .to_return(dummy_response)
   end
 end
