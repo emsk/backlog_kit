@@ -10,6 +10,9 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - '*.gemspec'
 
+Metrics/ModuleLength:
+  Enabled: false
+
 Style/AccessorMethodName:
   Enabled: false
 

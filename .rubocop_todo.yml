@@ -12,11 +12,6 @@
 Metrics/LineLength:
   Max: 176
 
-# Offense count: 1
-# Configuration parameters: CountComments.
-Metrics/ModuleLength:
-  Max: 141
-
 # Offense count: 9
 Style/Documentation:
   Exclude:
