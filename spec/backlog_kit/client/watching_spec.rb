@@ -185,8 +185,37 @@ describe BacklogKit::Client::Space do
     it_behaves_like 'a response body of watching'
   end
 
+  describe '#mark_as_read_watchings', vcr: { cassette_name: 'watching/mark_as_read_watchings' } do
+    let(:response) { client.mark_as_read_watchings(user_id) }
+    let(:content_type) { 'application/json' }
+    let(:status_code) { 204 }
+
+    it_behaves_like 'a normal response'
+
+    describe '#headers' do
+      subject { response.headers }
+
+      it { is_expected.to be_a BacklogKit::Resource }
+      it { is_expected.to respond_to('access-control-allow-origin') }
+      it { is_expected.to respond_to(:access_control_allow_origin) }
+      it { is_expected.not_to respond_to('content-type') }
+      it { is_expected.not_to respond_to(:content_type) }
+      it { is_expected.to respond_to(:date) }
+      it { is_expected.to respond_to(:server) }
+      it { is_expected.to respond_to('strict-transport-security') }
+      it { is_expected.to respond_to(:strict_transport_security) }
+      it { is_expected.not_to respond_to('content-length') }
+      it { is_expected.not_to respond_to(:content_length) }
+      it { is_expected.to respond_to(:connection) }
+    end
+
+    it_behaves_like 'a normal response status'
+    it_behaves_like 'a response body of no content'
+  end
+
   describe '#mark_as_read_watching', vcr: { cassette_name: 'watching/mark_as_read_watching' } do
-    let(:response) { client.mark_as_read_watching(user_id) }
+    let(:watching_id) { 17177 }
+    let(:response) { client.mark_as_read_watching(watching_id) }
     let(:content_type) { 'application/json' }
     let(:status_code) { 204 }
 

@@ -59,8 +59,16 @@ module BacklogKit
       #
       # @param user_id [Integer, String] User id
       # @return [BacklogKit::Response] No content response
-      def mark_as_read_watching(user_id)
+      def mark_as_read_watchings(user_id)
         post("users/#{user_id}/watchings/markAsChecked")
+      end
+
+      # Mark a watching as read
+      #
+      # @param watching_id [Integer, String] Watching id
+      # @return [BacklogKit::Response] No content response
+      def mark_as_read_watching(watching_id)
+        post("watchings/#{watching_id}/markAsRead")
       end
     end
   end
