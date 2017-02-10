@@ -7,6 +7,7 @@ rvm:
   - 2.4.0
 before_install:
   - gem update --system
+  - gem update bundler
 env:
   global:
   - secure: lDkZSBZKCnmOcxrP13WTrPM7wT9ox4PFB0l6EjdA++Czus1gqFMQV5HCQzWcnsS9mUdcKWhUBjdchC8vzEXnpvhuwPf508kF+jYuaI9t8kOug48Iwp+rQ9Tmhue8AEj0XYJ8Z0TRrDmIFa46Ni+3OQTy9ptnRjumqELa+sZoqu9P9GmFhUJFQuuqV+UrJVU8wyhJemK8rWo7AoqlLsiIxI/YxGxOoobCjBWboslgGbvAQxcIJYCHxE0ZwImYEC1vZ2NDOHn/R5NFXpjAlteMOIyh0CvW4NYUi0I4ypdiuiI+3AWcqrlgitggWwkei3cz/u7/F8cGmrhBLCr+ZSqrePjVfvC5HetoFanLPKB+koJbEwfL17ACKRSBiJ4yV3YG86Lds7CTIJyhNcwJziQM4Vq7s7BS5Iz6xASYgaFtKn7GG5p9vJ57DCdyrxkAOl/FljFWVovNiFL5xnj7VXYiTKgOPnL+gtWwt9vmqUy6iYO6velNkIwOQ+FhpgLNp39HQc+m9c73UVqEN9BE/4PnVujq/g2+LQWkSvjCaOCJpldITmNPF6h2iTmTaS4F4BO3/+WTH4Fr3A6uzEpDjHzNM8dA/NU2ByF7wM3YIeo0COQQSuJjldR2Ft1bCsBHM04smAkl3J5+1BGA9XrbUt7jSZHfDIGFGXNWUhlBtSuStz0=
