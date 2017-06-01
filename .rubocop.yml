@@ -3,6 +3,9 @@ inherit_from: .rubocop_todo.yml
 AllCops:
   DisplayCopNames: true
 
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
 Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
@@ -21,9 +24,6 @@ Style/BracesAroundHashParameters:
 
 Style/DoubleNegation:
   Enabled: false
-
-Style/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
 
 Style/NumericLiterals:
   Enabled: false
