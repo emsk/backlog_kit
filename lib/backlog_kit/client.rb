@@ -43,6 +43,7 @@ module BacklogKit
 
     attr_accessor(
       :space_id,
+      :top_level_domain,
       :api_key,
       :client_id,
       :client_secret,
@@ -56,16 +57,18 @@ module BacklogKit
     #
     # @param options [Hash] Initialize options
     # @option options [String] :space_id Backlog space id
+    # @option options [String] :top_level_domain Backlog top level domain
     # @option options [String] :api_key Backlog api key
     # @option options [String] :client_id Backlog OAuth client id
     # @option options [String] :client_secret Backlog OAuth client secret
     # @option options [String] :refresh_token Backlog OAuth refresh token
     def initialize(options = {})
-      @space_id      = ENV['BACKLOG_SPACE_ID']
-      @api_key       = ENV['BACKLOG_API_KEY']
-      @client_id     = ENV['BACKLOG_OAUTH_CLIENT_ID']
-      @client_secret = ENV['BACKLOG_OAUTH_CLIENT_SECRET']
-      @refresh_token = ENV['BACKLOG_OAUTH_REFRESH_TOKEN']
+      @space_id         = ENV['BACKLOG_SPACE_ID']
+      @top_level_domain = ENV['BACKLOG_TOP_DOMAIN'] || 'jp'
+      @api_key          = ENV['BACKLOG_API_KEY']
+      @client_id        = ENV['BACKLOG_OAUTH_CLIENT_ID']
+      @client_secret    = ENV['BACKLOG_OAUTH_CLIENT_SECRET']
+      @refresh_token    = ENV['BACKLOG_OAUTH_REFRESH_TOKEN']
 
       options.each do |key, value|
         instance_variable_set(:"@#{key}", value)
@@ -149,7 +152,7 @@ module BacklogKit
     end
 
     def host
-      "https://#{space_id}.backlog.jp"
+      "https://#{space_id}.backlog.#{top_level_domain}"
     end
 
     def request_headers
