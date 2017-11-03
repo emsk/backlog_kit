@@ -64,7 +64,7 @@ module BacklogKit
     # @option options [String] :refresh_token Backlog OAuth refresh token
     def initialize(options = {})
       @space_id         = ENV['BACKLOG_SPACE_ID']
-      @top_level_domain = ENV['BACKLOG_TOP_DOMAIN'] || 'jp'
+      @top_level_domain = ENV['BACKLOG_TOP_LEVEL_DOMAIN'] || 'jp'
       @api_key          = ENV['BACKLOG_API_KEY']
       @client_id        = ENV['BACKLOG_OAUTH_CLIENT_ID']
       @client_secret    = ENV['BACKLOG_OAUTH_CLIENT_SECRET']
