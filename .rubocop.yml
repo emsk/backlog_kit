@@ -16,7 +16,7 @@ Metrics/BlockLength:
 Metrics/ModuleLength:
   Enabled: false
 
-Style/AccessorMethodName:
+Naming/AccessorMethodName:
   Enabled: false
 
 Style/BracesAroundHashParameters:
