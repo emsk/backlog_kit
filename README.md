@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/backlog_kit.svg)](http://badge.fury.io/rb/backlog_kit)
 [![Build Status](https://travis-ci.org/emsk/backlog_kit.svg?branch=master)](https://travis-ci.org/emsk/backlog_kit)
 [![Build status](https://ci.appveyor.com/api/projects/status/no4jqaoimctfsejj?svg=true)](https://ci.appveyor.com/project/emsk/backlog-kit)
-[![Coverage Status](https://coveralls.io/repos/emsk/backlog_kit/badge.svg?branch=master)](https://coveralls.io/r/emsk/backlog_kit)
+[![Codecov](https://codecov.io/gh/emsk/backlog_kit/branch/master/graph/badge.svg)](https://codecov.io/gh/emsk/backlog_kit)
 [![Code Climate](https://codeclimate.com/github/emsk/backlog_kit/badges/gpa.svg)](https://codeclimate.com/github/emsk/backlog_kit)
 [![Inline docs](http://inch-ci.org/github/emsk/backlog_kit.svg?branch=master)](http://inch-ci.org/github/emsk/backlog_kit)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
