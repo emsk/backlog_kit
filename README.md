@@ -85,6 +85,7 @@ client = BacklogKit::Client.new(
 | ENV Variable | Description |
 | :----------- | :---------- |
 | `BACKLOG_SPACE_ID` | Your Backlog SPACE ID. |
+| `BACKLOG_SECOND_LEVEL_DOMAIN` | Your Backlog SECOND LEVEL DOMAIN. |
 | `BACKLOG_TOP_LEVEL_DOMAIN` | Your Backlog TOP LEVEL DOMAIN. |
 | `BACKLOG_API_KEY` | Your Backlog API KEY. |
 | `BACKLOG_OAUTH_CLIENT_ID` | CLIENT ID of your Backlog application. |
