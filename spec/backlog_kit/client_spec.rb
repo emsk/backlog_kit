@@ -88,7 +88,7 @@ describe BacklogKit::Client do
         stub_const('ENV', { 'BACKLOG_TOP_LEVEL_DOMAIN' => nil })
       end
 
-      it { is_expected.to eq 'jp' }
+      it { is_expected.to eq 'com' }
     end
 
     context 'when preset @top_level_domain from args' do

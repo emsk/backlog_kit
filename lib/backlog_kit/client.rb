@@ -67,7 +67,7 @@ module BacklogKit
     def initialize(options = {})
       @space_id            = ENV['BACKLOG_SPACE_ID']
       @second_level_domain = ENV['BACKLOG_SECOND_LEVEL_DOMAIN'] || 'backlog'
-      @top_level_domain    = ENV['BACKLOG_TOP_LEVEL_DOMAIN'] || 'jp'
+      @top_level_domain    = ENV['BACKLOG_TOP_LEVEL_DOMAIN'] || 'com'
       @api_key             = ENV['BACKLOG_API_KEY']
       @client_id           = ENV['BACKLOG_OAUTH_CLIENT_ID']
       @client_secret       = ENV['BACKLOG_OAUTH_CLIENT_SECRET']
