@@ -31,13 +31,6 @@ Style/Documentation:
     - 'lib/backlog_kit/response/middleware.rb'
     - 'lib/backlog_kit/response/raise_error.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/ExpandPathArguments:
-  Exclude:
-    - 'backlog_kit.gemspec'
-    - 'spec/spec_helper.rb'
-
 # Offense count: 304
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
