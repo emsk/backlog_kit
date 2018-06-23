@@ -113,32 +113,6 @@ BacklogKit's API documentation is [here](http://www.rubydoc.info/gems/backlog_ki
 * Ruby 2.4
 * Ruby 2.5
 
-## Development
-
-### Dependencies
-
-##### Production
-
-* [activesupport](https://github.com/rails/rails/tree/master/activesupport)
-* [faraday](https://github.com/lostisland/faraday)
-* [faraday_middleware](https://github.com/lostisland/faraday_middleware)
-
-##### Development
-
-* [bundler](https://github.com/bundler/bundler)
-* [coveralls](https://github.com/lemurheavy/coveralls-ruby)
-* [multi_json](https://github.com/intridea/multi_json)
-* [rake](https://github.com/ruby/rake)
-* [redcarpet](https://github.com/vmg/redcarpet)
-* [rspec](https://github.com/rspec/rspec)
-* [rubocop](https://github.com/bbatsov/rubocop)
-* [simplecov](https://github.com/colszowka/simplecov)
-* [vcr](https://github.com/vcr/vcr)
-* [webmock](https://github.com/bblimke/webmock)
-* [yard](https://github.com/lsegal/yard)
-
-See [`backlog_kit.gemspec`](backlog_kit.gemspec).
-
 ## Contributing
 
 1. Fork it ( https://github.com/emsk/backlog_kit/fork )
