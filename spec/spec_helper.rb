@@ -25,6 +25,11 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
+
+  config.before do
+    stub_const('ENV', ENV.to_hash.merge('BACKLOG_SECOND_LEVEL_DOMAIN' => 'backlog'))
+    stub_const('ENV', ENV.to_hash.merge('BACKLOG_TOP_LEVEL_DOMAIN' => 'jp'))
+  end
 end
 
 VCR.configure do |c|

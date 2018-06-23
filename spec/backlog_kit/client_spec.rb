@@ -1,5 +1,7 @@
 describe BacklogKit::Client do
   let(:space_id) { 'test-space-id' }
+  let(:second_level_domain) { 'second-level-domain' }
+  let(:top_level_domain) { 'top-level-domain' }
   let(:api_key) { 'test-api-key' }
   let(:client_id) { 'test-client-id' }
   let(:client) { described_class.new(space_id: space_id, api_key: api_key) }
@@ -10,6 +12,10 @@ describe BacklogKit::Client do
     it { is_expected.to be_a described_class }
     it { is_expected.to respond_to(:space_id) }
     it { is_expected.to respond_to(:space_id=) }
+    it { is_expected.to respond_to(:second_level_domain) }
+    it { is_expected.to respond_to(:second_level_domain=) }
+    it { is_expected.to respond_to(:top_level_domain) }
+    it { is_expected.to respond_to(:top_level_domain=) }
     it { is_expected.to respond_to(:api_key) }
     it { is_expected.to respond_to(:api_key=) }
     it { is_expected.to respond_to(:client_id) }
@@ -42,6 +48,64 @@ describe BacklogKit::Client do
       end
 
       it { is_expected.to eq space_id_env }
+    end
+  end
+
+  describe '#second_level_domain' do
+    subject { client.second_level_domain }
+
+    context 'when not set @second_level_domain' do
+      before do
+        stub_const('ENV', { 'BACKLOG_SECOND_LEVEL_DOMAIN' => nil })
+      end
+
+      it { is_expected.to eq 'backlog' }
+    end
+
+    context 'when preset @second_level_domain from args' do
+      let(:client) { described_class.new(second_level_domain: second_level_domain) }
+
+      it { is_expected.to eq second_level_domain }
+    end
+
+    context 'when preset @second_level_domain from ENV' do
+      let(:client) { described_class.new }
+      let(:second_level_domain_env) { 'test-second-level-domain-env' }
+
+      before do
+        stub_const('ENV', { 'BACKLOG_SECOND_LEVEL_DOMAIN' => second_level_domain_env })
+      end
+
+      it { is_expected.to eq second_level_domain_env }
+    end
+  end
+
+  describe '#top_level_domain' do
+    subject { client.top_level_domain }
+
+    context 'when not set @top_level_domain' do
+      before do
+        stub_const('ENV', { 'BACKLOG_TOP_LEVEL_DOMAIN' => nil })
+      end
+
+      it { is_expected.to eq 'jp' }
+    end
+
+    context 'when preset @top_level_domain from args' do
+      let(:client) { described_class.new(top_level_domain: top_level_domain) }
+
+      it { is_expected.to eq top_level_domain }
+    end
+
+    context 'when preset @top_level_domain from ENV' do
+      let(:client) { described_class.new }
+      let(:top_level_domain_env) { 'test-top-level-domain-env' }
+
+      before do
+        stub_const('ENV', { 'BACKLOG_TOP_LEVEL_DOMAIN' => top_level_domain_env })
+      end
+
+      it { is_expected.to eq top_level_domain_env }
     end
   end
 
