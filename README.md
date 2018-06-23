@@ -80,19 +80,19 @@ client = BacklogKit::Client.new(
 )
 ```
 
-## ENV
+## BacklogKit::Client Config
 
-| ENV Variable | Description |
-| :----------- | :---------- |
-| `BACKLOG_SPACE_ID` | Your Backlog SPACE ID. |
-| `BACKLOG_SECOND_LEVEL_DOMAIN` | Your Backlog SECOND LEVEL DOMAIN. |
-| `BACKLOG_TOP_LEVEL_DOMAIN` | Your Backlog TOP LEVEL DOMAIN. |
-| `BACKLOG_API_KEY` | Your Backlog API KEY. |
-| `BACKLOG_OAUTH_CLIENT_ID` | CLIENT ID of your Backlog application. |
-| `BACKLOG_OAUTH_CLIENT_SECRET` | CLIENT SECRET of your Backlog application. |
-| `BACKLOG_OAUTH_REFRESH_TOKEN` | REFRESH TOKEN obtained from the Backlog token endpoint. |
+| Variable | ENV Variable | Description | Default |
+| :------- | :----------- | :---------- | :------ |
+| `space_id` | `BACKLOG_SPACE_ID` | Your Backlog SPACE ID. ||
+| `second_level_domain` | `BACKLOG_SECOND_LEVEL_DOMAIN` | Your Backlog SECOND LEVEL DOMAIN. | `backlog` |
+| `top_level_domain` | `BACKLOG_TOP_LEVEL_DOMAIN` | Your Backlog TOP LEVEL DOMAIN. | `com` |
+| `api_key` | `BACKLOG_API_KEY` | Your Backlog API KEY. ||
+| `client_id` | `BACKLOG_OAUTH_CLIENT_ID` | CLIENT ID of your Backlog application. ||
+| `client_secret` | `BACKLOG_OAUTH_CLIENT_SECRET` | CLIENT SECRET of your Backlog application. ||
+| `refresh_token` | `BACKLOG_OAUTH_REFRESH_TOKEN` | REFRESH TOKEN obtained from the token endpoint. ||
 
-You can create instance more easily.
+If you set ENV variables, you can create an instance more simply.
 
 ```ruby
 client = BacklogKit::Client.new
