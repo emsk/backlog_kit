@@ -20,6 +20,7 @@ module BacklogKit
         encode = match_data[1]
         filename = match_data[2]
         return filename if encode.empty?
+
         URI.decode_www_form_component(filename, encode)
       end
 

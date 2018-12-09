@@ -30,12 +30,6 @@ Layout/AlignHash:
   Exclude:
     - 'lib/backlog_kit/response/raise_error.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Layout/EmptyLineAfterGuardClause:
-  Exclude:
-    - 'lib/backlog_kit/response/file_parser.rb'
-
 # Offense count: 3
 Lint/UriEscapeUnescape:
   Exclude:
