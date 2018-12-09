@@ -100,6 +100,15 @@ module BacklogKit
         patch("issues/#{issue_id_or_key}/comments/#{comment_id}", content: content)
       end
 
+      # Delete a comment in issue
+      #
+      # @param issue_id_or_key [Integer, String] Issue id or Issue key
+      # @param comment_id [Integer, String] Comment id
+      # @return [BacklogKit::Response] The comment information
+      def delete_comment(issue_id_or_key, comment_id)
+        delete("issues/#{issue_id_or_key}/comments/#{comment_id}")
+      end
+
       # Get list of comment notifications
       #
       # @param issue_id_or_key [Integer, String] Issue id or Issue key

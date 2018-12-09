@@ -344,6 +344,17 @@ describe BacklogKit::Client::Issue do
     it_behaves_like 'a response body of comment', change_log: false, star: false, notification: false
   end
 
+  describe '#delete_comment', vcr: { cassette_name: 'issue/delete_comment' } do
+    let(:response) { client.delete_comment(1267081, 60926684) }
+    let(:content_type) { 'application/json' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+    it_behaves_like 'a response body of comment', change_log: false, star: false, notification: false
+  end
+
   describe '#get_comment_notifications', vcr: { cassette_name: 'issue/get_comment_notifications' } do
     let(:response) { client.get_comment_notifications(1188856, 5328877) }
     let(:content_type) { 'application/json; charset=utf-8' }
