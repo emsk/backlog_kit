@@ -25,6 +25,9 @@ Style/BracesAroundHashParameters:
 Style/DoubleNegation:
   Enabled: false
 
+Style/HashSyntax:
+  Enabled: false
+
 Style/IfUnlessModifier:
   Exclude:
     - 'Gemfile'
