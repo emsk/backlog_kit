@@ -48,14 +48,6 @@ Style/Documentation:
     - 'lib/backlog_kit/response/middleware.rb'
     - 'lib/backlog_kit/response/raise_error.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-Style/HashSyntax:
-  Exclude:
-    - 'spec/backlog_kit/hash_extensions_spec.rb'
-
 # Offense count: 309
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https

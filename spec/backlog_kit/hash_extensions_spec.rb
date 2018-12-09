@@ -14,7 +14,7 @@ describe Hash do
         abcdEfgh_1234_ijklMnop: 'テスト',
         abcdEfgh_5678_ijklMnop: 'テスト',
         abcdEfgh_1234: 'テスト',
-        :'1234_abcdEfgh_1234' => { abcdEfgh_9012_ijklMnop: 'テスト' }
+        '1234_abcdEfgh_1234': { abcdEfgh_9012_ijklMnop: 'テスト' }
       }
     end
 
