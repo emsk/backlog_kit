@@ -6,7 +6,7 @@ if Gem::Version.create(RUBY_VERSION) < Gem::Version.create('2.2.2')
   gem 'activesupport', '< 5.0.0'
 end
 
-if Gem::Version.create(RUBY_VERSION) < Gem::Version.create('2.2.0')
+if Gem::Version.create(RUBY_VERSION) >= Gem::Version.create('2.1.0') && Gem::Version.create(RUBY_VERSION) < Gem::Version.create('2.2.0')
   gem 'rubocop', '< 0.58.0'
 end
 
