@@ -20,16 +20,6 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'backlog_kit.gemspec'
 
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
-# SupportedHashRocketStyles: key, separator, table
-# SupportedColonStyles: key, separator, table
-# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/AlignHash:
-  Exclude:
-    - 'lib/backlog_kit/response/raise_error.rb'
-
 # Offense count: 3
 Lint/UriEscapeUnescape:
   Exclude:

@@ -3,6 +3,9 @@ inherit_from: .rubocop_todo.yml
 AllCops:
   DisplayCopNames: true
 
+Layout/AlignHash:
+  Enabled: false
+
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
