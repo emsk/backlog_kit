@@ -8,13 +8,6 @@
 
 # Offense count: 1
 # Configuration parameters: Include.
-# Include: **/*.gemfile, **/Gemfile, **/gems.rb
-Bundler/DuplicatedGem:
-  Exclude:
-    - 'Gemfile'
-
-# Offense count: 1
-# Configuration parameters: Include.
 # Include: **/*.gemspec
 Gemspec/RequiredRubyVersion:
   Exclude:

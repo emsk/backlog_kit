@@ -3,6 +3,9 @@ inherit_from: .rubocop_todo.yml
 AllCops:
   DisplayCopNames: true
 
+Bundler/DuplicatedGem:
+  Enabled: false
+
 Layout/AlignHash:
   Enabled: false
 
