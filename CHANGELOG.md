@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.18.0 (2018-12-12)
+
+### Features
+
+* Add `delete_comment`
+
 ## 0.17.0 (2018-06-24)
 
 ### Features
