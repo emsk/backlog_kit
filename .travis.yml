@@ -9,7 +9,12 @@ rvm:
   - 2.6.0
   - ruby-head
 before_install:
-  - gem install rubygems-update -v '<3' && update_rubygems
+  - |
+    if [[ `ruby -v` =~ 2\.[0-2]\.[0-9]+ ]]; then
+      gem install rubygems-update -v '<3' && update_rubygems
+    else
+      gem update --system
+    fi
   - gem update bundler
 env:
   global:
