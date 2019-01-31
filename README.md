@@ -112,6 +112,7 @@ BacklogKit's API documentation is [here](http://www.rubydoc.info/gems/backlog_ki
 * Ruby 2.3
 * Ruby 2.4
 * Ruby 2.5
+* Ruby 2.6
 
 ## Contributing
 
