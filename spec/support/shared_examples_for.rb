@@ -911,6 +911,47 @@ shared_examples_for 'a resource of tag' do
   it { is_expected.to respond_to(:name) }
 end
 
+shared_examples_for 'a resource of team' do |flags|
+  subject { team }
+
+  it { is_expected.to be_a BacklogKit::Resource }
+  it { is_expected.to respond_to(:id) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:members) }
+  it { is_expected.to respond_to(:displayOrder) }
+  it { is_expected.to respond_to(:display_order) }
+  it { is_expected.to respond_to(:createdUser) }
+  it { is_expected.to respond_to(:created_user) }
+  it { is_expected.to respond_to(:created) }
+  it { is_expected.to respond_to(:updatedUser) }
+  it { is_expected.to respond_to(:updated_user) }
+  it { is_expected.to respond_to(:updated) }
+
+  describe '#members' do
+    subject { team.members }
+    it { is_expected.to be_a Array }
+
+    if flags[:member]
+      describe '#[0]' do
+        let(:user) { team.members[0] }
+        it_behaves_like 'a resource of user'
+      end
+    else
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe '#created_user' do
+    let(:user) { team.created_user }
+    it_behaves_like 'a resource of user'
+  end
+
+  describe '#updated_user' do
+    let(:user) { team.updated_user }
+    it_behaves_like 'a resource of user'
+  end
+end
+
 shared_examples_for 'a resource of user' do
   subject { user }
 

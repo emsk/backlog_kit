@@ -12,6 +12,7 @@ require 'backlog_kit/client/resolution'
 require 'backlog_kit/client/space'
 require 'backlog_kit/client/star'
 require 'backlog_kit/client/status'
+require 'backlog_kit/client/team'
 require 'backlog_kit/client/user'
 require 'backlog_kit/client/watching'
 require 'backlog_kit/client/wiki'
@@ -35,6 +36,7 @@ module BacklogKit
     include BacklogKit::Client::Space
     include BacklogKit::Client::Star
     include BacklogKit::Client::Status
+    include BacklogKit::Client::Team
     include BacklogKit::Client::User
     include BacklogKit::Client::Watching
     include BacklogKit::Client::Wiki
