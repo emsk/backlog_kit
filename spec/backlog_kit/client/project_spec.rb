@@ -186,6 +186,60 @@ describe BacklogKit::Client::Project do
     end
   end
 
+  describe '#get_project_teams', vcr: { cassette_name: 'project/get_project_teams' } do
+    let(:project_id) { 31581 }
+    let(:response) { client.get_project_teams(project_id) }
+    let(:content_type) { 'application/json' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+
+    describe '#body' do
+      subject { response.body }
+      it { is_expected.to be_a Array }
+
+      describe '#[0]' do
+        let(:team) { response.body[0] }
+        it_behaves_like 'a resource of team', member: true
+      end
+    end
+  end
+
+  shared_examples_for 'a response body of team' do |flags|
+    describe '#body' do
+      let(:team) { response.body }
+      it_behaves_like 'a resource of team', flags
+    end
+  end
+
+  describe '#add_project_team', vcr: { cassette_name: 'project/add_project_team' } do
+    let(:project_id) { 31581 }
+    let(:team_id) { 3089 }
+    let(:response) { client.add_project_team(project_id, team_id) }
+    let(:content_type) { 'application/json' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+    it_behaves_like 'a response body of team', member: true
+  end
+
+  describe '#remove_project_team', vcr: { cassette_name: 'project/remove_project_team' } do
+    let(:project_id) { 31581 }
+    let(:team_id) { 3089 }
+    let(:response) { client.remove_project_team(project_id, team_id) }
+    let(:content_type) { 'application/json' }
+    let(:status_code) { 200 }
+
+    it_behaves_like 'a normal response'
+    it_behaves_like 'a normal response headers'
+    it_behaves_like 'a normal response status'
+    it_behaves_like 'a response body of team', member: true
+  end
+
   describe '#get_project_users', vcr: { cassette_name: 'project/get_project_users' } do
     let(:response) { client.get_project_users(project_id) }
     let(:content_type) { 'application/json; charset=utf-8' }

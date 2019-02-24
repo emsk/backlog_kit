@@ -64,6 +64,32 @@ module BacklogKit
         get("projects/#{project_id_or_key}/activities", params)
       end
 
+      # Get list of project teams
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @return [BacklogKit::Response] List of teams
+      def get_project_teams(project_id_or_key)
+        get("projects/#{project_id_or_key}/teams")
+      end
+
+      # Add a team to a project
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param team_id [Integer, String] Team id
+      # @return [BacklogKit::Response] The team information
+      def add_project_team(project_id_or_key, team_id)
+        post("projects/#{project_id_or_key}/teams", team_id: team_id)
+      end
+
+      # Remove a team from project
+      #
+      # @param project_id_or_key [Integer, String] Project id or project key
+      # @param team_id [Integer, String] Team id
+      # @return [BacklogKit::Response] The team information
+      def remove_project_team(project_id_or_key, team_id)
+        delete("projects/#{project_id_or_key}/teams", team_id: team_id)
+      end
+
       # Get list of project members
       #
       # @param project_id_or_key [Integer, String] Project id or project key
