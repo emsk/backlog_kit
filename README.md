@@ -1,16 +1,16 @@
 # BacklogKit
 
-[![Gem Version](https://badge.fury.io/rb/backlog_kit.svg)](http://badge.fury.io/rb/backlog_kit)
+[![Gem Version](https://badge.fury.io/rb/backlog_kit.svg)](https://badge.fury.io/rb/backlog_kit)
 [![Build Status](https://travis-ci.org/emsk/backlog_kit.svg?branch=master)](https://travis-ci.org/emsk/backlog_kit)
 [![Build status](https://ci.appveyor.com/api/projects/status/no4jqaoimctfsejj?svg=true)](https://ci.appveyor.com/project/emsk/backlog-kit)
 [![Codecov](https://codecov.io/gh/emsk/backlog_kit/branch/master/graph/badge.svg)](https://codecov.io/gh/emsk/backlog_kit)
 [![Code Climate](https://codeclimate.com/github/emsk/backlog_kit/badges/gpa.svg)](https://codeclimate.com/github/emsk/backlog_kit)
-[![Inline docs](http://inch-ci.org/github/emsk/backlog_kit.svg?branch=master)](http://inch-ci.org/github/emsk/backlog_kit)
+[![Inline docs](https://inch-ci.org/github/emsk/backlog_kit.svg?branch=master)](https://inch-ci.org/github/emsk/backlog_kit)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Ruby wrapper for the Nulab's Backlog API.
 
-http://developer.nulab-inc.com/docs/backlog
+https://developer.nulab.com/docs/backlog/
 
 ## Installation
 
@@ -100,9 +100,9 @@ client = BacklogKit::Client.new
 
 ## Supported Backlog API Version
 
-BacklogKit supports Backlog API [2.32.0](http://developer.nulab-inc.com/docs/backlog/changes#2-32-0-2018-10-22).
+BacklogKit supports Backlog API [2.32.0](https://developer.nulab.com/docs/backlog/changes/#2-32-0-2018-10-22).
 
-BacklogKit's API documentation is [here](http://www.rubydoc.info/gems/backlog_kit).
+BacklogKit's API documentation is [here](https://www.rubydoc.info/gems/backlog_kit).
 
 ## Supported Ruby Versions
 
