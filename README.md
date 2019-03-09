@@ -100,7 +100,7 @@ client = BacklogKit::Client.new
 
 ## Supported Backlog API Version
 
-BacklogKit supports Backlog API [2.32.0](https://developer.nulab.com/docs/backlog/changes/#2-32-0-2018-10-22).
+BacklogKit supports Backlog API [2.32.2](https://developer.nulab.com/docs/backlog/changes/#2-32-2-2018-12-18).
 
 BacklogKit's API documentation is [here](https://www.rubydoc.info/gems/backlog_kit).
 

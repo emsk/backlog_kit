@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.19.0 (2019-03-09)
+
+### Features
+
+* Support Team API
+* Add methods for project team
+* Support Bundler 2
+
 ## 0.18.0 (2018-12-12)
 
 ### Features
