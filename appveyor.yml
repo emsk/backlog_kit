@@ -21,7 +21,6 @@ environment:
 
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
-  - bundle lock --add-platform ruby
   - bundle install
 
 build: off

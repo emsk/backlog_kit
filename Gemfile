@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'psych', platforms: :ruby
+if Gem::Version.create(RUBY_VERSION) < Gem::Version.create('2.3.0')
+  gem 'rubocop', '< 0.65.0'
+end
 
 if Gem::Version.create(RUBY_VERSION) < Gem::Version.create('2.2.2')
   gem 'activesupport', '< 5.0.0'
