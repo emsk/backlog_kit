@@ -20,4 +20,7 @@ steps:
   displayName: 'bundle install'
 
 - script: bundle exec rake
+  env:
+    BACKLOG_SPACE_ID: $(spaceId)
+    BACKLOG_API_KEY: $(apiKey)
   displayName: 'bundle exec rake'
