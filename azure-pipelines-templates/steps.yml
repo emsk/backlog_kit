@@ -1,0 +1,10 @@
+steps:
+- script: gem install bundler --no-document
+  displayName: 'gem install bundler'
+- script: bundle install --retry=3 --jobs=4
+  displayName: 'bundle install'
+- script: bundle exec rake
+  env:
+    BACKLOG_SPACE_ID: $(spaceId)
+    BACKLOG_API_KEY: $(apiKey)
+  displayName: 'bundle exec rake'

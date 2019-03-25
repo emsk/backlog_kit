@@ -1,26 +1,87 @@
-# Ruby
-# Package your Ruby project.
-# Add steps that install rails, analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/ruby
-
 trigger:
 - master
 
-pool:
-  vmImage: 'Ubuntu-16.04'
+jobs:
+- job: Linux
+  strategy:
+    matrix:
+      ruby23:
+        rubyVersion: '2.3'
+      ruby24:
+        rubyVersion: '2.4'
+      ruby25:
+        rubyVersion: '2.5'
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  - task: UseRubyVersion@0
+    inputs:
+      versionSpec: $(rubyVersion)
+  - template: azure-pipelines-templates/steps.yml
 
-steps:
-- task: UseRubyVersion@0
-  inputs:
-    versionSpec: '>= 2.5'
+- job: macOS
+  strategy:
+    matrix:
+      ruby20:
+        rubyVersion: '2.0.0-p648'
+      ruby21:
+        rubyVersion: '2.1.10'
+      ruby22:
+        rubyVersion: '2.2.10'
+      ruby23:
+        rubyVersion: '2.3.8'
+      ruby24:
+        rubyVersion: '2.4.5'
+      ruby25:
+        rubyVersion: '2.5.5'
+      ruby26:
+        rubyVersion: '2.6.2'
+  pool:
+    vmImage: 'macOS-10.13'
+  steps:
+  - script: |
+      brew -v
+      brew install rbenv
+    displayName: 'brew install rbenv'
+  - script: |
+      echo -e '\neval "$(rbenv init -)"' >> ~/.bash_profile
+    displayName: 'rbenv init'
+  - script: |
+      source ~/.bash_profile
+      rbenv install $(rubyVersion)
+      rbenv local $(rubyVersion)
+    displayName: 'rbenv install'
+  - script: |
+      source ~/.bash_profile
+      if [[ $(rubyVersion) =~ 2\.[0-2]\.[0-9]+ ]]; then
+        gem install bundler --no-document -v '<2'
+      else
+        gem install bundler --no-document
+      fi
+    displayName: 'gem install bundler'
+  - script: |
+      source ~/.bash_profile
+      bundle install --retry=3 --jobs=4
+    displayName: 'bundle install'
+  - script: |
+      source ~/.bash_profile
+      bundle exec rake
+    env:
+      BACKLOG_SPACE_ID: $(spaceId)
+      BACKLOG_API_KEY: $(apiKey)
+    displayName: 'bundle exec rake'
 
-- script: |
-    gem install bundler
-    bundle install --retry=3 --jobs=4
-  displayName: 'bundle install'
-
-- script: bundle exec rake
-  env:
-    BACKLOG_SPACE_ID: $(spaceId)
-    BACKLOG_API_KEY: $(apiKey)
-  displayName: 'bundle exec rake'
+- job: Windows
+  strategy:
+    matrix:
+      ruby24:
+        rubyVersion: '2.4'
+      ruby25:
+        rubyVersion: '2.5'
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - task: UseRubyVersion@0
+    inputs:
+      versionSpec: $(rubyVersion)
+  - template: azure-pipelines-templates/steps.yml
