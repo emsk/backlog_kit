@@ -3,6 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/backlog_kit.svg)](https://badge.fury.io/rb/backlog_kit)
 [![Build Status](https://travis-ci.org/emsk/backlog_kit.svg?branch=master)](https://travis-ci.org/emsk/backlog_kit)
 [![Build status](https://ci.appveyor.com/api/projects/status/no4jqaoimctfsejj?svg=true)](https://ci.appveyor.com/project/emsk/backlog-kit)
+[![Build Status](https://dev.azure.com/emsk/backlog_kit/_apis/build/status/emsk.backlog_kit?branchName=master)](https://dev.azure.com/emsk/backlog_kit/_build/latest?definitionId=1&branchName=master)
 [![Codecov](https://codecov.io/gh/emsk/backlog_kit/branch/master/graph/badge.svg)](https://codecov.io/gh/emsk/backlog_kit)
 [![Code Climate](https://codeclimate.com/github/emsk/backlog_kit/badges/gpa.svg)](https://codeclimate.com/github/emsk/backlog_kit)
 [![Inline docs](https://inch-ci.org/github/emsk/backlog_kit.svg?branch=master)](https://inch-ci.org/github/emsk/backlog_kit)
