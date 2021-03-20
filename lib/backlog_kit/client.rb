@@ -85,7 +85,7 @@ module BacklogKit
     # @return [String] OAuth authorization URL
     def authorization_url
       url = "#{host}/OAuth2AccessRequest.action?response_type=code&client_id=#{@client_id}"
-      url += "&redirect_uri=#{URI.escape(@redirect_uri)}" if @redirect_uri
+      url += "&redirect_uri=#{Addressable::URI.escape(@redirect_uri)}" if @redirect_uri
       url += "&state=#{@state}" if @state
       url
     end
@@ -171,8 +171,8 @@ module BacklogKit
     end
 
     def request_path(path)
-      path = "/api/v2/#{URI.escape(path)}"
-      path += "?apiKey=#{URI.escape(@api_key.to_s)}" if @api_key
+      path = "/api/v2/#{Addressable::URI.escape(path)}"
+      path += "?apiKey=#{Addressable::URI.escape(@api_key.to_s)}" if @api_key
       path
     end
   end
