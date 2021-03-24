@@ -1,0 +1,36 @@
+name: build
+
+on: [push, pull_request]
+
+env:
+  BACKLOG_SPACE_ID: ${{ secrets.BACKLOG_SPACE_ID }}
+  BACKLOG_API_KEY: ${{ secrets.BACKLOG_API_KEY }}
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        ruby: [2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 3.0, ruby-head, jruby-9.1, jruby-9.2, jruby-head, truffleruby-19, truffleruby-20, truffleruby-head]
+        exclude:
+          - os: windows-latest
+            ruby: truffleruby-19
+          - os: windows-latest
+            ruby: truffleruby-20
+          - os: windows-latest
+            ruby: truffleruby-head
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+    - name: Install dependencies
+      run: bundle install --jobs 4 --retry 3
+    - name: Run test
+      run: bundle exec rake
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage/.resultset.json
