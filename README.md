@@ -1,6 +1,7 @@
 # BacklogKit
 
 [![Gem Version](https://badge.fury.io/rb/backlog_kit.svg)](https://badge.fury.io/rb/backlog_kit)
+[![Build Status](https://github.com/emsk/backlog_kit/actions/workflows/build.yml/badge.svg)](https://github.com/emsk/backlog_kit/actions/workflows/build.yml)
 [![Build Status](https://travis-ci.org/emsk/backlog_kit.svg?branch=main)](https://travis-ci.org/emsk/backlog_kit)
 [![Build status](https://ci.appveyor.com/api/projects/status/no4jqaoimctfsejj?svg=true)](https://ci.appveyor.com/project/emsk/backlog-kit)
 [![Build Status](https://dev.azure.com/emsk/backlog_kit/_apis/build/status/emsk.backlog_kit?branchName=main)](https://dev.azure.com/emsk/backlog_kit/_build/latest?definitionId=1&branchName=main)
