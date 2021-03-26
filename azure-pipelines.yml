@@ -1,25 +1,13 @@
+# Ruby
+# Package your Ruby project.
+# Add steps that install rails, analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/ruby
+
 trigger:
 - main
 
 jobs:
-- job: Linux
-  strategy:
-    matrix:
-      ruby23:
-        rubyVersion: '2.3'
-      ruby24:
-        rubyVersion: '2.4'
-      ruby25:
-        rubyVersion: '2.5'
-  pool:
-    vmImage: 'ubuntu-16.04'
-  steps:
-  - task: UseRubyVersion@0
-    inputs:
-      versionSpec: $(rubyVersion)
-  - template: azure-pipelines-templates/steps.yml
-
-- job: macOS
+- job: 'ubuntu_1604'
   strategy:
     matrix:
       ruby20:
@@ -31,57 +19,202 @@ jobs:
       ruby23:
         rubyVersion: '2.3.8'
       ruby24:
-        rubyVersion: '2.4.5'
+        rubyVersion: '2.4.10'
       ruby25:
-        rubyVersion: '2.5.5'
+        rubyVersion: '2.5.8'
       ruby26:
-        rubyVersion: '2.6.2'
+        rubyVersion: '2.6.6'
+      ruby27:
+        rubyVersion: '2.7.2'
+      ruby30:
+        rubyVersion: '3.0.0'
   pool:
-    vmImage: 'macOS-10.13'
+    vmImage: 'ubuntu-16.04'
+  variables:
+  - name: libsslDev10PackageName
+    value: libssl-dev=1.0.2g-1ubuntu4.19
+  - name: rubyBuildBinPath
+    value: ~/local/bin
+  - name: rubyPath
+    value: /home/vsts/local/ruby-$(rubyVersion)
+  - name: gemBinPath
+    value: $(rubyPath)/bin
+  steps:
+  - template: azure-pipelines-templates/steps-ubuntu.yml
+
+- job: 'ubuntu_1804'
+  strategy:
+    matrix:
+      ruby20:
+        rubyVersion: '2.0.0-p648'
+      ruby21:
+        rubyVersion: '2.1.10'
+      ruby22:
+        rubyVersion: '2.2.10'
+      ruby23:
+        rubyVersion: '2.3.8'
+      ruby24:
+        rubyVersion: '2.4.10'
+      ruby25:
+        rubyVersion: '2.5.8'
+      ruby26:
+        rubyVersion: '2.6.6'
+      ruby27:
+        rubyVersion: '2.7.2'
+      ruby30:
+        rubyVersion: '3.0.0'
+  pool:
+    vmImage: 'ubuntu-18.04'
+  variables:
+  - name: libsslDev10PackageName
+    value: libssl1.0-dev
+  - name: rubyBuildBinPath
+    value: ~/local/bin
+  - name: rubyPath
+    value: /home/vsts/local/ruby-$(rubyVersion)
+  - name: gemBinPath
+    value: $(rubyPath)/bin
+  steps:
+  - template: azure-pipelines-templates/steps-ubuntu.yml
+
+- job: 'ubuntu_2004'
+  strategy:
+    matrix:
+      ruby20:
+        rubyVersion: '2.0.0-p648'
+      ruby21:
+        rubyVersion: '2.1.10'
+      ruby22:
+        rubyVersion: '2.2.10'
+      ruby23:
+        rubyVersion: '2.3.8'
+      ruby24:
+        rubyVersion: '2.4.10'
+      ruby25:
+        rubyVersion: '2.5.8'
+      ruby26:
+        rubyVersion: '2.6.6'
+      ruby27:
+        rubyVersion: '2.7.2'
+      ruby30:
+        rubyVersion: '3.0.0'
+  pool:
+    vmImage: 'ubuntu-20.04'
+  variables:
+  - name: libsslDev10PackageName
+    value: libssl1.0-dev
+  - name: rubyBuildBinPath
+    value: ~/local/bin
+  - name: rubyPath
+    value: /home/vsts/local/ruby-$(rubyVersion)
+  - name: gemBinPath
+    value: $(rubyPath)/bin
   steps:
   - script: |
-      brew -v
-      brew install rbenv
-    displayName: 'brew install rbenv'
-  - script: |
-      echo -e '\neval "$(rbenv init -)"' >> ~/.bash_profile
-    displayName: 'rbenv init'
-  - script: |
-      source ~/.bash_profile
-      rbenv install $(rubyVersion)
-      rbenv local $(rubyVersion)
-    displayName: 'rbenv install'
-  - script: |
-      source ~/.bash_profile
-      if [[ $(rubyVersion) =~ 2\.[0-2]\.[0-9]+ ]]; then
-        gem install bundler --no-document -v '<2'
-      else
-        gem install bundler --no-document
+      if [[ $(rubyVersion) =~ 2\.[0-3]\.[0-9]+ ]]; then
+        echo 'deb http://security.ubuntu.com/ubuntu bionic-security main' | sudo tee -a /etc/apt/sources.list
+        sudo apt-get update
+        sudo apt-cache policy $(libsslDev10PackageName)
       fi
-    displayName: 'gem install bundler'
-  - script: |
-      source ~/.bash_profile
-      bundle install --retry=3 --jobs=4
-    displayName: 'bundle install'
-  - script: |
-      source ~/.bash_profile
-      bundle exec rake
-    env:
-      BACKLOG_SPACE_ID: $(spaceId)
-      BACKLOG_API_KEY: $(apiKey)
-    displayName: 'bundle exec rake'
+    displayName: 'Add libssl1.0-dev source'
+  - template: azure-pipelines-templates/steps-ubuntu.yml
 
-- job: Windows
+- job: 'macOS_1014'
+  strategy:
+    matrix:
+      ruby20:
+        rubyVersion: '2.0.0-p648'
+      ruby21:
+        rubyVersion: '2.1.10'
+      ruby22:
+        rubyVersion: '2.2.10'
+      ruby23:
+        rubyVersion: '2.3.8'
+      ruby24:
+        rubyVersion: '2.4.10'
+      ruby25:
+        rubyVersion: '2.5.8'
+      ruby26:
+        rubyVersion: '2.6.6'
+      ruby27:
+        rubyVersion: '2.7.2'
+      ruby30:
+        rubyVersion: '3.0.0'
+  pool:
+    vmImage: 'macOS-10.14'
+  variables:
+  - name: rubyPath
+    value: /Users/runner/ruby-$(rubyVersion)
+  - name: gemBinPath
+    value: $(rubyPath)/bin
+  steps:
+  - template: azure-pipelines-templates/steps-macos.yml
+
+- job: 'macOS_1015'
+  strategy:
+    matrix:
+      ruby20:
+        rubyVersion: '2.0.0-p648'
+      ruby21:
+        rubyVersion: '2.1.10'
+      ruby22:
+        rubyVersion: '2.2.10'
+      ruby23:
+        rubyVersion: '2.3.8'
+      ruby24:
+        rubyVersion: '2.4.10'
+      ruby25:
+        rubyVersion: '2.5.8'
+      ruby26:
+        rubyVersion: '2.6.6'
+      ruby27:
+        rubyVersion: '2.7.2'
+      ruby30:
+        rubyVersion: '3.0.0'
+  pool:
+    vmImage: 'macOS-10.15'
+  variables:
+  - name: rubyPath
+    value: /Users/runner/ruby-$(rubyVersion)
+  - name: gemBinPath
+    value: $(rubyPath)/bin
+  steps:
+  - script: |
+      if [[ $(rubyVersion) =~ 2\.[0-2]\.[0-9]+ ]]; then
+        sudo xcode-select --switch '/Applications/Xcode_11.7.app'
+      fi
+      xcodebuild -version
+    displayName: 'Select Xcode version'
+  - template: azure-pipelines-templates/steps-macos.yml
+
+- job: 'vs2017_win2016'
   strategy:
     matrix:
       ruby24:
         rubyVersion: '2.4'
       ruby25:
         rubyVersion: '2.5'
+      ruby26:
+        rubyVersion: '2.6'
+      ruby27:
+        rubyVersion: '2.7'
   pool:
     vmImage: 'vs2017-win2016'
   steps:
-  - task: UseRubyVersion@0
-    inputs:
-      versionSpec: $(rubyVersion)
-  - template: azure-pipelines-templates/steps.yml
+  - template: azure-pipelines-templates/steps-windows.yml
+
+- job: 'windows_2019'
+  strategy:
+    matrix:
+      ruby24:
+        rubyVersion: '2.4'
+      ruby25:
+        rubyVersion: '2.5'
+      ruby26:
+        rubyVersion: '2.6'
+      ruby27:
+        rubyVersion: '2.7'
+  pool:
+    vmImage: 'windows-2019'
+  steps:
+  - template: azure-pipelines-templates/steps-windows.yml

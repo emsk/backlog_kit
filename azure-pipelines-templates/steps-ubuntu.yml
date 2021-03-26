@@ -1,0 +1,40 @@
+steps:
+- script: |
+    sudo apt-get remove ruby
+    sudo apt-get install autoconf bison build-essential libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev libdb-dev
+    if [[ $(rubyVersion) =~ 2\.[0-3]\.[0-9]+ ]]; then
+      sudo apt-get remove libssl-dev
+      sudo apt-get install $(libsslDev10PackageName)
+    fi
+  displayName: 'Install APT packages'
+- task: Cache@2
+  inputs:
+    key: 'ruby | "$(Agent.JobName)" | "$(rubyVersion)"'
+    path: $(rubyPath)
+    cacheHitVar: rubyCacheRestored
+  displayName: 'Cache Ruby'
+- script: |
+    git clone https://github.com/rbenv/ruby-build.git
+    PREFIX=~/local ./ruby-build/install.sh
+  condition: ne(variables.rubyCacheRestored, 'true')
+  displayName: 'Install ruby-build'
+- script: |
+    $(rubyBuildBinPath)/ruby-build $(rubyVersion) $(rubyPath)
+  condition: ne(variables.rubyCacheRestored, 'true')
+  displayName: 'Install Ruby'
+- script: |
+    if [[ $(rubyVersion) =~ 2\.[0-2]\.[0-9]+ ]]; then
+      $(gemBinPath)/gem install bundler --no-document -v '<2'
+    else
+      $(gemBinPath)/gem install bundler --no-document
+    fi
+  displayName: 'Install bundler'
+- script: |
+    $(gemBinPath)/bundle install --retry=3 --jobs=4
+  displayName: 'Install gems'
+- script: |
+    $(gemBinPath)/bundle exec $(gemBinPath)/rake
+  env:
+    BACKLOG_SPACE_ID: $(spaceId)
+    BACKLOG_API_KEY: $(apiKey)
+  displayName: 'Run test'
